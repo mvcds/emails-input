@@ -64,6 +64,10 @@ function createBlock(email, editor, reference) {
 
   remove.innerHTML = 'X';
   remove.className = 'emails-input__block-remove';
+
+  remove.addEventListener('click', function onRemoveBlock() {
+    editor.removeChild(block)
+  });
 }
 
 // https://stackoverflow.com/a/46181/3178998
