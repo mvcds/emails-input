@@ -39,6 +39,45 @@
   padding: 8px 7px;
 }
 
+.emails-input__block {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+
+  text-align: right;
+
+  color: #050038;
+  background: rgba(102, 153, 255, 0.2);
+  border-radius: 100px;
+  margin: 0px 8px 4px 0px;
+  padding: 0px 8px 0px 10px;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.emails-input__block--invalid {
+  background-color: transparent;
+  border-bottom: 1px dashed #D92929;
+  border-radius: initial;
+  padding: 0;
+}
+
+.emails-input__block-email {
+  margin-right: 8px;
+}
+
+.emails-input__block-remove {
+  font-size: 8px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.emails-input__block-remove:hover {
+  color: #D92929;
+}
+
 .emails-input__email {
   font-family: Open Sans;
   font-style: normal;

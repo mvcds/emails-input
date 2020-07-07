@@ -1,14 +1,22 @@
-function EmailsInput(inputContainerNode) {
+const CONFIG = {
+  emails: []
+}
+
+function EmailsInput(inputContainerNode, config) {
+  const options = {...CONFIG, ...config}
+
   inputContainerNode.className = 'emails-input';
 
-  const content = createContent();
+  const content = createContent(options);
   const footer = createFooter();
 
   inputContainerNode.appendChild(content);
   inputContainerNode.appendChild(footer);
+
+  return {}
 }
 
-function createContent() {
+function createContent({ emails }) {
   const content = document.createElement('div');
   const title = document.createElement('header');
   const editor = document.createElement('div');
@@ -31,7 +39,37 @@ function createContent() {
   input.autofocus = true;
   input.placeholder = 'add more people…';
 
+  emails.forEach((email) => createBlock(email, editor, input))
+
   return content;
+}
+
+function createBlock(email, editor, reference) {
+  const block = document.createElement('span');
+  const text = document.createElement('span');
+  const remove = document.createElement('span');
+
+  block.appendChild(text)
+  block.appendChild(remove)
+  editor.insertBefore(block, reference);
+
+  block.className = 'emails-input__block';
+
+  if (!isEmailValid(email)) {
+    block.className = block.className + ' emails-input__block--invalid';
+  }
+
+  text.innerHTML = email;
+  text.className = 'emails-input__block-email';
+
+  remove.innerHTML = 'X';
+  remove.className = 'emails-input__block-remove';
+}
+
+// https://stackoverflow.com/a/46181/3178998
+function isEmailValid(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 
 function createFooter() {

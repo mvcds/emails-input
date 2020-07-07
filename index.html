@@ -15,6 +15,10 @@
       border-radius: 8px;
     }
 
+    details + details {
+      margin-top: 16px;
+    }
+
     .emails-input {
       margin-top: 16px;
     }
@@ -25,9 +29,16 @@
     <summary open>Basic Example</summary>
     <div id="basic-example"></div>
   </details>
+<body>
+  <details open>
+    <summary>Pre Filled With Emails</summary>
+    <div id="pre-filled-with-emails"></div>
+  </details>
   <script>
-    var basicExampleNode = document.querySelector('#basic-example');
-    var emailsInput = EmailsInput(basicExampleNode);
+    EmailsInput(document.querySelector('#basic-example'));
+    EmailsInput(document.querySelector('#pre-filled-with-emails'), {
+      emails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com']
+    });
   </script>
 </body>
 </html>
