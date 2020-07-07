@@ -27,6 +27,9 @@ function createContent() {
 
   input.className = 'emails-input__email';
   input.type = 'email';
+  input.tabIndex = 0;
+  input.autofocus = true;
+  input.placeholder = 'add more people…';
 
   return content;
 }
@@ -43,9 +46,11 @@ function createFooter() {
 
   addEmail.innerHTML = 'Add email';
   addEmail.type = 'button';
+  addEmail.className = 'emails-input__footer-button';
 
   getEmailsCount.innerHTML = 'Get emails count';
   getEmailsCount.type = 'button';
+  getEmailsCount.className = 'emails-input__footer-button';
 
   return footer;
 }
