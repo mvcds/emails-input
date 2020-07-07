@@ -6,8 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 	<link rel="stylesheet" href="">
+  <script src="./emails-input.js"></script>
 </head>
 <body>
-	Hello world!
+	<details open>
+    <summary open>Basic Example</summary>
+    <div id="basic-example"></div>
+  </details>
+  <script>
+    var basicExampleNode = document.querySelector('#basic-example');
+    var emailsInput = EmailsInput(basicExampleNode);
+  </script>
 </body>
 </html>
