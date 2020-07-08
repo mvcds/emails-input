@@ -39,7 +39,30 @@ function createContent({ emails }) {
   input.autofocus = true;
   input.placeholder = 'add more people…';
 
-  emails.forEach((email) => createBlock(email, editor, input))
+  const onAddEmail = (text) => {
+    const email = text && text.trim();
+
+    if (!email) {
+      return;
+    }
+
+    createBlock(email, editor, input)
+  }
+
+  input.addEventListener('keydown', function onKeyDown(event) {
+    if (event.key === ',') {
+      onAddEmail(input.value);
+      input.value = '';
+    }
+  });
+
+  input.addEventListener('input', function onKeyDown(event) {
+    if (event.data === ',') {
+      input.value = '';
+    }
+  });
+
+  emails.forEach(onAddEmail)
 
   return content;
 }

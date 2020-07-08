@@ -20,6 +20,15 @@ class Page {
   click(selector) {
     this._driver.findElement(webdriver.By.css(selector)).click();
   }
+
+  type(selector, text) {
+    this._driver.findElement(webdriver.By.css(selector)).sendKeys(text);
+  }
+
+  async getText(selector) {
+    const elem = this._driver.findElement(webdriver.By.css(selector));
+    return await elem.getText();
+  }
 }
 
 module.exports = Page;
