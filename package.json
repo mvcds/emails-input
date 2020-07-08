@@ -1,0 +1,28 @@
+{
+  "name": "emails-input",
+  "version": "0.0.0",
+  "description": "An easy way to input emails on your app!",
+  "main": "emails-input.js",
+  "scripts": {
+    "test": "run-p test:*",
+    "test:e2e": "run-p test:e2e:*",
+    "test:e2e:chrome": "cross-env BROWSER=chrome jest e2e/selenium.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mvcds/emails-input.git"
+  },
+  "author": "Marcos Silva <marvinc.silva@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mvcds/emails-input/issues"
+  },
+  "homepage": "https://github.com/mvcds/emails-input#readme",
+  "devDependencies": {
+    "chromedriver": "^83.0.1",
+    "cross-env": "^7.0.2",
+    "jest": "^26.1.0",
+    "npm-run-all": "^4.1.5",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}

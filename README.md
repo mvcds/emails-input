@@ -37,3 +37,7 @@ Where `config` is an object containing the following properties:
   emails: [], //initial list of emails
 }
 ```
+
+## Want to help?
+
+Check our [contribution guide](./CONTRIBUTING.md) for instructions on what to do after cloning this project - how to develop and how to test
