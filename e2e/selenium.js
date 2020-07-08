@@ -1,3 +1,4 @@
+const assert = require('assert');
 const webdriver = require('selenium-webdriver');
 
 const Page = require('./page');
@@ -39,6 +40,18 @@ afterAll(async () => {
   page && (await page.close());
 });
 
-it('Google', async () => {
-  await page.goTo(`http://google.com`);
+const sleep = m => new Promise(r => setTimeout(r, m))
+
+it('Delete an invalid EmailBlock', async () => {
+  const selector = '#pre-filled-with-emails .emails-input__block--invalid .emails-input__block-remove';
+
+  await page.goTo('file:///Users/marcossilva/Personal/emails-input/index.html');
+
+  assert(await page.isPresent(selector), 'the demo page should contain an invalid email block as part of the #pre-filled-with-emails')
+
+  page.click(selector);
+
+  await sleep(10)
+
+  assert.deepStrictEqual(await page.isPresent(selector), false, 'the deletion should work')
 });

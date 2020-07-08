@@ -1,3 +1,5 @@
+const webdriver = require('selenium-webdriver');
+
 class Page {
   constructor(driver) {
     this._driver = driver;
@@ -9,6 +11,14 @@ class Page {
 
   async close() {
     return this._driver.quit();
+  }
+
+  async isPresent(selector) {
+    return this._driver.findElements(webdriver.By.css(selector)).then(found => !!found.length);
+  }
+
+  click(selector) {
+    this._driver.findElement(webdriver.By.css(selector)).click();
   }
 }
 
