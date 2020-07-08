@@ -12,7 +12,7 @@
       padding: 16px 32px;
     }
 
-    body > div {
+    body > section {
       background-color: whitesmoke;
       padding: 16px;
       border: 1px solid whitesmoke;
@@ -25,20 +25,31 @@
       margin-bottom: 16px;
     }
 
-    div + div {
+    section + section {
       margin-top: 16px;
     }
   </style>
 </head>
 <body>
-  <div>
+  <section>
     <header>Basic Example</header>
+    <code>EmailsInput(node);</code>
+    <p>
+      With the basic example, you should be able to write new emails (separated by comma) or by pasting them. Once an email is created, you can remove it.
+    </p>
+    <p>
+      It's possible to count the valid e-mails by clicking on "get emails count". And if you want to spicy things up, a random email can be added by clickin on "add email".
+    </p>
     <div id="basic-example"></div>
-  </div>
-  <div>
+  </section>
+  <section>
     <header>Pre Filled With Emails</header>
+    <code>EmailsInput(node, {
+      emails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com']
+    });</code>
+    <p>An <code>EmailsInput</code> instance accepts a list of emails to prefill the editor with them.</p>
     <div id="pre-filled-with-emails"></div>
-  </div>
+  </section>
   <script>
     EmailsInput(document.querySelector('#basic-example'));
     EmailsInput(document.querySelector('#pre-filled-with-emails'), {
