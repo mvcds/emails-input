@@ -52,14 +52,18 @@ function createContent({ emails }) {
   input.addEventListener('keydown', function onKeyDown(event) {
     if (event.key === ',') {
       onAddEmail(input.value);
+    }
+  });
+
+  input.addEventListener('input', function onInput(event) {
+    if (event.data === ',') {
       input.value = '';
     }
   });
 
-  input.addEventListener('input', function onKeyDown(event) {
-    if (event.data === ',') {
-      input.value = '';
-    }
+  input.addEventListener('blur', function onBlur(event) {
+    onAddEmail(input.value);
+    input.value = '';
   });
 
   emails.forEach(onAddEmail)

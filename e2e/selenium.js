@@ -71,4 +71,7 @@ it('Email block should be created by entering comma', async () => {
 
   assert(await page.isPresent(blocks), 'a block should be created');
   assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean');
-})
+});
+
+//TODO: I couldn't find how to test, so I'm moving on (tradeoffs of a limited time)
+it.skip('Email block should be created by losing focus');
