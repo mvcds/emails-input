@@ -1,3 +1,3 @@
 module.exports = {
-  testRegex: "\\.js",
-};
+  testRegex: '\\.js'
+}
