@@ -11,3 +11,5 @@ globals:
   beforeAll: readonly
   afterAll: readonly
   it: readonly
+ignorePatterns:
+  - dist

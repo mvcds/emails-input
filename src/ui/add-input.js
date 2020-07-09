@@ -1,6 +1,6 @@
 import addBlock from './add-block.js'
 
-function addInput(editor, logic) {
+function addInput (editor, logic) {
   const input = document.createElement('input')
 
   input.className = 'emails-input__email'
@@ -32,7 +32,7 @@ function addInput(editor, logic) {
     setTimeout(() => {
       input.value.split(',').forEach(logic.addEmail)
       input.value = ''
-    }, 0);
+    }, 0)
   })
 
   logic.onAddEmail = addBlock.bind(null, { editor, input })

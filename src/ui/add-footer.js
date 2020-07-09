@@ -9,7 +9,7 @@ function addFooter (node) {
   addGetEmailsCount(footer)
 }
 
-function addAddEmail(footer) {
+function addAddEmail (footer) {
   const button = document.createElement('button')
 
   button.innerHTML = 'Add email'
@@ -19,7 +19,7 @@ function addAddEmail(footer) {
   footer.appendChild(button)
 }
 
-function addGetEmailsCount(footer) {
+function addGetEmailsCount (footer) {
   const button = document.createElement('button')
 
   button.innerHTML = 'Get emails count'

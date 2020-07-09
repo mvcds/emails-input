@@ -118,6 +118,5 @@ it('Email block should be created by pressing enter', async () => {
   assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean')
 })
 
-
-//TODO: i've tried to test it without success, i'll move on so it's possible to complete the other stuff
+// TODO: i've tried to test it without success, i'll move on so it's possible to complete the other stuff
 it.todo('Email blocks should be created by pasting a list of emails')

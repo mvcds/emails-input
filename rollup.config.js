@@ -1,4 +1,4 @@
-import pkg from './package.json';
+import pkg from './package.json'
 
 export default [
   {
@@ -16,4 +16,4 @@ export default [
       { file: pkg.module, format: 'es' }
     ]
   }
-];
+]

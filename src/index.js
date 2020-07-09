@@ -8,9 +8,9 @@ const CONFIG = {
 function EmailsInput (inputContainerNode, config) {
   const options = { ...CONFIG, ...config }
 
-  const logic = new Logic();
+  const logic = new Logic()
 
-  const ui = new Ui(inputContainerNode, logic)
+  Ui(inputContainerNode, logic)
 
   options.emails.forEach(logic.addEmail)
 

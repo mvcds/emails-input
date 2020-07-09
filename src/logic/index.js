@@ -1,8 +1,8 @@
 function Logic () {
   //  necessary because text can be repeated
-  let id = 0;
+  let id = 0
   const logic = {
-    addEmail(raw) {
+    addEmail (raw) {
       const email = raw && raw.trim()
 
       if (!email) {
@@ -22,7 +22,7 @@ function Logic () {
         onRemoveEmail: () => {
           const index = logic.emails.findIndex(x => x.id === data.id)
 
-          logic.emails.splice(index, 1);
+          logic.emails.splice(index, 1)
         }
       }
 

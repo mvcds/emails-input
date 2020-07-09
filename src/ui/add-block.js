@@ -1,4 +1,4 @@
-function addBlock({ editor, input }, event) {
+function addBlock ({ editor, input }, event) {
   const block = document.createElement('span')
 
   block.className = 'emails-input__block'
@@ -13,7 +13,7 @@ function addBlock({ editor, input }, event) {
   editor.insertBefore(block, input)
 }
 
-function addLabel(block, event) {
+function addLabel (block, event) {
   const label = document.createElement('span')
   label.innerHTML = event.email
   label.className = 'emails-input__block-email'
@@ -21,7 +21,7 @@ function addLabel(block, event) {
   block.appendChild(label)
 }
 
-function addRemoveButton(block, editor, event) {
+function addRemoveButton (block, editor, event) {
   const button = document.createElement('span')
 
   button.innerHTML = 'X'
@@ -29,7 +29,7 @@ function addRemoveButton(block, editor, event) {
 
   button.addEventListener('click', function onRemoveBlock () {
     editor.removeChild(block)
-    event.onRemoveEmail();
+    event.onRemoveEmail()
   })
 
   block.appendChild(button)

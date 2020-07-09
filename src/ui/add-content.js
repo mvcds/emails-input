@@ -11,7 +11,7 @@ function addContent (node, logic) {
   addEditor(content, logic)
 }
 
-function addTitle(content) {
+function addTitle (content) {
   const title = document.createElement('header')
 
   title.className = 'emails-input__title'
@@ -20,7 +20,7 @@ function addTitle(content) {
   content.appendChild(title)
 }
 
-function addEditor(content, logic) {
+function addEditor (content, logic) {
   const editor = document.createElement('div')
 
   editor.className = 'emails-input__editor'

@@ -1,10 +1,10 @@
 import serve from 'rollup-plugin-serve'
 
-import rollup from './rollup.config';
+import rollup from './rollup.config'
 
-const webserver =serve({
+const webserver = serve({
   open: true,
-  contentBase: ['dist', 'public'],
+  contentBase: ['dist', 'public']
 })
 
 export default rollup.map(c => ({
@@ -12,4 +12,4 @@ export default rollup.map(c => ({
   plugins: [
     webserver
   ]
-}));
+}))
