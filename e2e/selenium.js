@@ -92,3 +92,23 @@ it('Email block should be created by losing focus', async () => {
   assert(await page.isPresent(blocks), 'a block should be created')
   assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean')
 })
+
+it('Email block should be created by pressing enter', async () => {
+  const input = '#basic-example .emails-input__email'
+  const blocks = '#basic-example .emails-input__block'
+
+  await page.goTo('file:///Users/marcossilva/Personal/emails-input/index.html')
+
+  assert(await page.isPresent(input), 'the demo page should contain the input for #basic-example')
+  assert.deepStrictEqual(await page.isPresent(blocks), false, 'no block should be available')
+
+  page.type(input, 'marcos')
+  page.type(input, webdriver.Key.ENTER)
+
+  await sleep(1000)
+
+  page.click('div')
+
+  assert(await page.isPresent(blocks), 'a block should be created')
+  assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean')
+})

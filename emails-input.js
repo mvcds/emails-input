@@ -50,13 +50,14 @@ function createContent ({ emails }) {
   }
 
   input.addEventListener('keydown', function onKeyDown (event) {
-    if (event.key === ',') {
+    if (event.key === ',' || event.key === 'Enter') {
       onAddEmail(input.value)
+      input.value = ''
     }
   })
 
   input.addEventListener('input', function onInput (event) {
-    if (event.data === ',') {
+    if (event.data === ',' || event.data === 'Enter') {
       input.value = ''
     }
   })
