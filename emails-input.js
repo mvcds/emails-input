@@ -67,6 +67,14 @@ function createContent ({ emails }) {
     input.value = ''
   })
 
+  input.addEventListener('paste', function onPaste (event) {
+    //  uses the timeout to be sure that the value has changed
+    setTimeout(() => {
+      input.value.split(',').forEach(onAddEmail)
+      input.value = ''
+    }, 0);
+  })
+
   emails.forEach(onAddEmail)
 
   return content
