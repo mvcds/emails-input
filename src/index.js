@@ -134,4 +134,4 @@ function createFooter () {
   return footer
 }
 
-module.exports = EmailsInput
+export default EmailsInput

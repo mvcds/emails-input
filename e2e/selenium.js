@@ -1,7 +1,12 @@
+require('dotenv').config()
 const assert = require('assert')
 const webdriver = require('selenium-webdriver')
 
 const Page = require('./page')
+
+const { EI_DEV_SERVER_URL, EI_BROWSER, EI_DEV_WAIT_MS } = process.env
+
+const wait = parseInt(EI_DEV_WAIT_MS, 10)
 
 let page
 
@@ -18,7 +23,7 @@ beforeAll(async () => {
 function createCapabilities () {
   let capabilities
 
-  switch (process.env.BROWSER) {
+  switch (EI_BROWSER) {
     default:
       require('chromedriver')
       capabilities = webdriver.Capabilities.chrome()
@@ -45,13 +50,13 @@ const sleep = m => new Promise(resolve => setTimeout(resolve, m))
 it('Delete an invalid EmailBlock', async () => {
   const selector = '#pre-filled-with-emails .emails-input__block--invalid .emails-input__block-remove'
 
-  await page.goTo('file:///Users/marcossilva/Personal/emails-input/index.html')
+  await page.goTo(EI_DEV_SERVER_URL)
 
   assert(await page.isPresent(selector), 'the demo page should contain an invalid email block as part of the #pre-filled-with-emails')
 
   page.click(selector)
 
-  await sleep(1000)
+  await sleep(wait)
 
   assert.deepStrictEqual(await page.isPresent(selector), false, 'the deletion should work')
 })
@@ -60,14 +65,14 @@ it('Email block should be created by entering comma', async () => {
   const input = '#basic-example .emails-input__email'
   const blocks = '#basic-example .emails-input__block'
 
-  await page.goTo('file:///Users/marcossilva/Personal/emails-input/index.html')
+  await page.goTo(EI_DEV_SERVER_URL)
 
   assert(await page.isPresent(input), 'the demo page should contain the input for #basic-example')
   assert.deepStrictEqual(await page.isPresent(blocks), false, 'no block should be available')
 
   page.type(input, 'marcos,')
 
-  await sleep(1000)
+  await sleep(wait)
 
   assert(await page.isPresent(blocks), 'a block should be created')
   assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean')
@@ -77,7 +82,7 @@ it('Email block should be created by losing focus', async () => {
   const input = '#basic-example .emails-input__email'
   const blocks = '#basic-example .emails-input__block'
 
-  await page.goTo('file:///Users/marcossilva/Personal/emails-input/index.html')
+  await page.goTo(EI_DEV_SERVER_URL)
 
   assert(await page.isPresent(input), 'the demo page should contain the input for #basic-example')
   assert.deepStrictEqual(await page.isPresent(blocks), false, 'no block should be available')
@@ -85,7 +90,7 @@ it('Email block should be created by losing focus', async () => {
   page.type(input, 'marcos')
   page.type(input, webdriver.Key.TAB)
 
-  await sleep(1000)
+  await sleep(wait)
 
   page.click('div')
 
@@ -97,7 +102,7 @@ it('Email block should be created by pressing enter', async () => {
   const input = '#basic-example .emails-input__email'
   const blocks = '#basic-example .emails-input__block'
 
-  await page.goTo('file:///Users/marcossilva/Personal/emails-input/index.html')
+  await page.goTo(EI_DEV_SERVER_URL)
 
   assert(await page.isPresent(input), 'the demo page should contain the input for #basic-example')
   assert.deepStrictEqual(await page.isPresent(blocks), false, 'no block should be available')
@@ -105,7 +110,7 @@ it('Email block should be created by pressing enter', async () => {
   page.type(input, 'marcos')
   page.type(input, webdriver.Key.ENTER)
 
-  await sleep(1000)
+  await sleep(wait)
 
   page.click('div')
 
