@@ -1,0 +1,128 @@
+.emails-input {
+  display: flex;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.emails-input__content {
+  background: #F8F8F7;
+  border-radius: 8px 8px 0px 0px;
+  padding: 32px 50px 24px;
+}
+
+.emails-input__footer {
+  background: #FFFFFF;
+  border-radius: 0px 0px 8px 8px;
+  padding: 24px 50px 32px;
+}
+
+.emails-input__title {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #050038;
+
+  margin-bottom: 24px;
+}
+
+.emails-input__editor {
+  background: #FFFFFF;
+  border: 1px solid #C3C2CF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  min-height: 96px;
+  padding: 8px 7px;
+}
+
+.emails-input__block {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+
+  text-align: right;
+
+  color: #050038;
+  background: rgba(102, 153, 255, 0.2);
+  border-radius: 100px;
+  margin: 0px 8px 4px 0px;
+  padding: 0px 8px 0px 10px;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.emails-input__block--invalid {
+  background-color: transparent;
+  border-bottom: 1px dashed #D92929;
+  border-radius: initial;
+  padding: 0;
+}
+
+.emails-input__block-email {
+  margin-right: 8px;
+}
+
+.emails-input__block-remove {
+  font-size: 8px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.emails-input__block-remove:hover {
+  color: #D92929;
+}
+
+.emails-input__email {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+
+  color: #050038;
+  border: none;
+}
+
+.emails-input__email::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #C3C2CF;
+  opacity: 1; /* Firefox */
+}
+
+.emails-input__email:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #C3C2CF;
+}
+
+.emails-input__email::-ms-input-placeholder { /* Microsoft Edge */
+  color: #C3C2CF;
+}
+
+.emails-input__footer-button {
+  background: #4262FF;
+  border-radius: 6px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+
+  text-align: center;
+
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.emails-input__footer-button:hover {
+  background: rgba(66, 98, 255, 0.8);
+}
+
+.emails-input__footer-button + .emails-input__footer-button {
+  margin-left: 16px;
+}
