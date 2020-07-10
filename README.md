@@ -20,7 +20,7 @@ You need a few ingredients to use this lib
 
 `EmailsInput` is a function that takes as first argument a node where a `EmailEditor` will be rendered, the second and optional argument is an object containing some members which change how the instance behaves/looks.
 
-Check the files under `docs` folder to get started with using this lib.
+Copy the files under `docs` folder, and then reference them into the correct path, to your browser project to get started with using this lib.
 
 ## API
 
