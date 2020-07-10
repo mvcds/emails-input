@@ -29,7 +29,7 @@ function Logic () {
         }
       }
 
-      logic.onAddEmail(event)
+      logic.onAddEmail && logic.onAddEmail(event)
     },
     getEmailsCount () {
       const validEmails = logic.emails
