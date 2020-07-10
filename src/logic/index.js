@@ -38,7 +38,13 @@ function Logic () {
       alert(validEmails.length)
     },
     addRandomEmail () {
-      logic.addEmail(email())
+      const raw = email()
+
+      if (!isEmailValid(raw)) {
+        return logic.addRandomEmail();
+      }
+
+      logic.addEmail(raw)
     },
     emails: []
   }

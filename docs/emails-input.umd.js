@@ -2115,7 +2115,7 @@ function Logic () {
         }
       };
 
-      logic.onAddEmail(event);
+      logic.onAddEmail && logic.onAddEmail(event);
     },
     getEmailsCount () {
       const validEmails = logic.emails
@@ -2124,7 +2124,13 @@ function Logic () {
       alert(validEmails.length);
     },
     addRandomEmail () {
-      logic.addEmail(randomEmail());
+      const raw = randomEmail();
+
+      if (!isEmailValid(raw)) {
+        return logic.addRandomEmail();
+      }
+
+      logic.addEmail(raw);
     },
     emails: []
   };
