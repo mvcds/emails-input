@@ -97,6 +97,7 @@
 
   color: #050038;
   border: none;
+  max-width: 100%;
 }
 
 .emails-input__email::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
