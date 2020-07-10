@@ -23,3 +23,12 @@ It's important to notice that to save time, for now, the e2e tests are run again
 
 If you want to run e2e tests, it's necessary that the project is running on the url set on your `.env` (`EI_DEV_SERVER_URL`).
 
+## Committing
+
+If you change the code and wish to commit, you need to be running the server, as a first wave of tests is run locally.
+
+## Example page
+
+The folder `docs` is generated automatically, so that it can be shown in the GitHub's page.
+
+The command for it is `npm run ghp` and it was tested on mac's only.
