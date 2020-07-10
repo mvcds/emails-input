@@ -129,5 +129,26 @@ it('"Get emails count" button shows an alert with valid email count', async () =
 
   page.click(button)
 
+  await sleep(wait)
+
   assert.deepStrictEqual(await page.getAlertText(), '3', 'an alert showing 3 valid emails should appear')
+})
+
+it('"Add email" button creates a random email on the editor', async () => {
+  const blocks = '#basic-example .emails-input__block'
+  const button = '#basic-example .emails-input__add-email'
+
+  await page.goTo(EI_DEV_SERVER_URL)
+
+  assert.deepStrictEqual(await page.count(blocks), 0, 'there should be no emails prefilling #basic-example')
+
+  page.click(button)
+  page.click(button)
+  page.click(button)
+  page.click(button)
+  page.click(button)
+
+  await sleep(wait)
+
+  assert.deepStrictEqual(await page.count(blocks), 5, 'there should be 5 emails created on #basic-example')
 })

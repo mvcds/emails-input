@@ -10,6 +10,7 @@ const webserver = serve({
 export default rollup.map(c => ({
   ...c,
   plugins: [
+    ...c.plugins,
     webserver
   ]
 }))

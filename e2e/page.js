@@ -44,7 +44,11 @@ class Page {
 
     const alert = await this._driver.switchTo().alert()
 
-    return await alert.getText()
+    const text = alert.getText()
+
+    await alert.accept()
+
+    return text
   }
 }
 

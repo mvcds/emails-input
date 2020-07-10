@@ -30,6 +30,8 @@
   },
   "homepage": "https://github.com/mvcds/emails-input#readme",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "chromedriver": "^83.0.1",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
@@ -52,5 +54,8 @@
       "pre-commit": "lint-staged",
       "pre-push": "npm run dev"
     }
+  },
+  "dependencies": {
+    "random-email": "^1.0.3"
   }
 }

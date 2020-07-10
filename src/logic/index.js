@@ -1,3 +1,5 @@
+import email from 'random-email'
+
 function Logic () {
   //  necessary because text can be repeated
   let id = 0
@@ -29,11 +31,14 @@ function Logic () {
 
       logic.onAddEmail(event)
     },
-    onGetEmailsCount () {
+    getEmailsCount () {
       const validEmails = logic.emails
         .filter(({ isValid }) => isValid)
 
       alert(validEmails.length)
+    },
+    addRandomEmail () {
+      logic.addEmail(email())
     },
     emails: []
   }

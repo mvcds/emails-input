@@ -5,16 +5,18 @@ function addFooter (node, logic) {
 
   node.appendChild(footer)
 
-  addAddEmail(footer)
+  addAddEmail(footer, logic)
   addGetEmailsCount(footer, logic)
 }
 
-function addAddEmail (footer) {
+function addAddEmail (footer, logic) {
   const button = document.createElement('button')
 
   button.innerHTML = 'Add email'
   button.type = 'button'
-  button.className = 'emails-input__footer-button'
+  button.className = 'emails-input__footer-button emails-input__add-email'
+
+  button.addEventListener('click', logic.addRandomEmail)
 
   footer.appendChild(button)
 }
@@ -26,7 +28,7 @@ function addGetEmailsCount (footer, logic) {
   button.type = 'button'
   button.className = 'emails-input__footer-button emails-input__get-emails-count'
 
-  button.addEventListener('click', logic.onGetEmailsCount)
+  button.addEventListener('click', logic.getEmailsCount)
 
   footer.appendChild(button)
 }
