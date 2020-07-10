@@ -2145,6 +2145,10 @@ function isEmailValid (email) {
   return re.test(String(email).toLowerCase())
 }
 
+var remove = `<svg viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.8L7.2 0L4 3.2L0.8 0L0 0.8L3.2 4L0 7.2L0.8 8L4 4.8L7.2 8L8 7.2L4.8 4L8 0.8Z" fill="#050038"/>
+</svg>`;
+
 function addBlock ({ editor, input }, event) {
   const block = document.createElement('span');
 
@@ -2171,6 +2175,7 @@ function addLabel (block, event) {
 function addRemoveButton (block, editor, event) {
   const button = document.createElement('span');
 
+  button.innerHTML = remove;
   button.className = 'emails-input__block-remove';
 
   button.addEventListener('click', function onRemoveBlock () {
@@ -2178,19 +2183,7 @@ function addRemoveButton (block, editor, event) {
     event.onRemoveEmail();
   });
 
-  addSVG(button);
-
   block.appendChild(button);
-}
-
-function addSVG(button) {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-
-  use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'bundle.svg#icon-remove');
-
-  svg.appendChild(use);
-  button.appendChild(svg);
 }
 
 function addInput (editor, logic) {

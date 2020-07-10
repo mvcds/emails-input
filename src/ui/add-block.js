@@ -1,3 +1,5 @@
+ import remove from '../icons/icon-remove.svg'
+
 function addBlock ({ editor, input }, event) {
   const block = document.createElement('span')
 
@@ -24,6 +26,7 @@ function addLabel (block, event) {
 function addRemoveButton (block, editor, event) {
   const button = document.createElement('span')
 
+  button.innerHTML = remove;
   button.className = 'emails-input__block-remove'
 
   button.addEventListener('click', function onRemoveBlock () {
@@ -31,19 +34,7 @@ function addRemoveButton (block, editor, event) {
     event.onRemoveEmail()
   })
 
-  addSVG(button)
-
   block.appendChild(button)
-}
-
-function addSVG(button) {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use')
-
-  use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'bundle.svg#icon-remove')
-
-  svg.appendChild(use)
-  button.appendChild(svg)
 }
 
 export default addBlock

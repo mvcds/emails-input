@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import svg from 'rollup-plugin-svg-icons'
+import inlineSvg from 'rollup-plugin-inline-svg';
 
 import pkg from './package.json'
 
@@ -9,10 +9,7 @@ const plugins = [
     browser: true
   }),
   commonjs(),
-  svg({
-    inputFolder: 'public/icons',
-    output: 'dist/bundle.svg'
-  })
+  inlineSvg()
 ]
 
 export default [

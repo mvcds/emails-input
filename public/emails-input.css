@@ -84,7 +84,7 @@
   height: 8px;
   width: 8px;
   display: flex;
-  transition: transform 1s;
+  transition: transform 0.5s;
 }
 
 .emails-input__block-remove:hover {
