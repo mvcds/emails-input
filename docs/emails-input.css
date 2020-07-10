@@ -62,6 +62,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  align-items: center;
 }
 
 .emails-input__block--invalid {
@@ -79,13 +80,20 @@
 }
 
 .emails-input__block-remove {
-  font-size: 8px;
-  line-height: 24px;
   cursor: pointer;
+  height: 8px;
+  width: 8px;
+  display: flex;
+  transition: transform 1s;
 }
 
 .emails-input__block-remove:hover {
-  color: #D92929;
+  transform: rotate(90deg);
+}
+
+.emails-input__block-remove svg {
+  height: 100%;
+  width: 100%;
 }
 
 .emails-input__email {
