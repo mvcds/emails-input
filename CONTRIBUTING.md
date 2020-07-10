@@ -27,6 +27,8 @@ If you want to run e2e tests, it's necessary that the project is running on the 
 
 If you change the code and wish to commit, you need to be running the server, as a first wave of tests is run locally.
 
+It's important to notice that [NVM](https://github.com/nvm-sh/nvm) is used to setup the node version of the application.
+
 ## Example page
 
 The folder `docs` is generated automatically, so that it can be shown in the GitHub's page.

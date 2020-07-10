@@ -15,6 +15,9 @@
     "pretest": "npm run build",
     "ghp": "npm run build && rm -fr docs && cp -R public docs && mv dist/emails-input.cjs.js docs/emails-input.cjs.js"
   },
+  "engines": {
+    "node": ">=10.16.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mvcds/emails-input.git"
