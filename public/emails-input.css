@@ -23,7 +23,6 @@
   font-weight: normal;
   font-size: 20px;
   line-height: 27px;
-  /* identical to box height */
 
   color: #050038;
 
@@ -35,8 +34,10 @@
   border: 1px solid #C3C2CF;
   box-sizing: border-box;
   border-radius: 4px;
-  min-height: 96px;
+  height: 96px;
   padding: 8px 7px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .emails-input__block {
