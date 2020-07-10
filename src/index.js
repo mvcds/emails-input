@@ -17,4 +17,6 @@ function EmailsInput (inputContainerNode, config) {
   return {}
 }
 
+globalThis.EmailsInput = EmailsInput
+
 export default EmailsInput
