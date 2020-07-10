@@ -56,6 +56,12 @@
   padding: 0px 8px 0px 10px;
   display: inline-flex;
   cursor: pointer;
+
+  max-width: calc(100% - 8px);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .emails-input__block--invalid {
@@ -67,6 +73,9 @@
 
 .emails-input__block-email {
   margin-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .emails-input__block-remove {
