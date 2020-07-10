@@ -117,8 +117,7 @@ it('Email block should be created by pressing enter', async () => {
 })
 
 // TODO: i've tried to test it without success, i'll move on so it's possible to complete the other stuff
-// and it's commented to bypass lint-staged (which expects a clean exit status)
-// it.todo('Email blocks should be created by pasting a list of emails')
+it.todo('Email blocks should be created by pasting a list of emails')
 
 it('"Get emails count" button shows an alert with valid email count', async () => {
   const blocks = '#pre-filled-with-emails .emails-input__block:not(.emails-input__block--invalid)'
