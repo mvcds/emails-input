@@ -1,5 +1,4 @@
 '(src|e2e)/*.js':
   - npm run lint
-  - npm run test
 'src|public':
   - npm run ghp

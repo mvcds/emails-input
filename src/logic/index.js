@@ -11,14 +11,15 @@ function Logic () {
 
       const data = {
         email,
-        id: id++
+        id: id++,
+        isValid: isEmailValid(email)
       }
 
       logic.emails.push(data)
 
       const event = {
         email,
-        isValid: isEmailValid(email),
+        isValid: data.isValid,
         onRemoveEmail: () => {
           const index = logic.emails.findIndex(x => x.id === data.id)
 
@@ -27,6 +28,12 @@ function Logic () {
       }
 
       logic.onAddEmail(event)
+    },
+    onGetEmailsCount () {
+      const validEmails = logic.emails
+        .filter(({ isValid }) => isValid)
+
+      alert(validEmails.length)
     },
     emails: []
   }

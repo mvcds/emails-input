@@ -13,7 +13,8 @@
     "test:e2e": "run-p test:e2e:*",
     "test:e2e:chrome": "cross-env EI_BROWSER=chrome jest e2e/selenium.js",
     "pretest": "npm run build",
-    "ghp": "npm run build && rm -fr docs && cp -R public docs && mv dist/emails-input.cjs.js docs/emails-input.cjs.js"
+    "ghp": "npm run build && rm -fr docs && cp -R public docs && mv dist/emails-input.cjs.js docs/emails-input.cjs.js",
+    "dev": "npm run test:e2e:chrome"
   },
   "engines": {
     "node": ">=10.16.0"

@@ -5,7 +5,7 @@ function Ui (node, logic) {
   node.className = 'emails-input'
 
   addContent(node, logic)
-  addFooter(node)
+  addFooter(node, logic)
 }
 
 export default Ui

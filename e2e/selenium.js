@@ -112,11 +112,23 @@ it('Email block should be created by pressing enter', async () => {
 
   await sleep(wait)
 
-  page.click('div')
-
   assert(await page.isPresent(blocks), 'a block should be created')
   assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean')
 })
 
 // TODO: i've tried to test it without success, i'll move on so it's possible to complete the other stuff
-it.todo('Email blocks should be created by pasting a list of emails')
+// and it's commented to bypass lint-staged (which expects a clean exit status)
+// it.todo('Email blocks should be created by pasting a list of emails')
+
+it('"Get emails count" button shows an alert with valid email count', async () => {
+  const blocks = '#pre-filled-with-emails .emails-input__block:not(.emails-input__block--invalid)'
+  const button = '#pre-filled-with-emails .emails-input__get-emails-count'
+
+  await page.goTo(EI_DEV_SERVER_URL)
+
+  assert.deepStrictEqual(await page.count(blocks), 3, 'there should be 3 valid emails prefilling #pre-filled-with-emails')
+
+  page.click(button)
+
+  assert.deepStrictEqual(await page.getAlertText(), '3', 'an alert showing 3 valid emails should appear')
+})

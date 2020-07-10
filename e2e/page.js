@@ -14,7 +14,9 @@ class Page {
   }
 
   async isPresent (selector) {
-    return this._driver.findElements(webdriver.By.css(selector)).then(found => !!found.length)
+    const count = await this.count(selector)
+
+    return !!count
   }
 
   click (selector) {
@@ -27,7 +29,22 @@ class Page {
 
   async getText (selector) {
     const elem = this._driver.findElement(webdriver.By.css(selector))
+
     return await elem.getText()
+  }
+
+  async count (selector) {
+    const elements = await this._driver.findElements(webdriver.By.css(selector))
+
+    return elements.length
+  }
+
+  async getAlertText (selector) {
+    await this._driver.wait(webdriver.until.alertIsPresent())
+
+    const alert = await this._driver.switchTo().alert()
+
+    return await alert.getText()
   }
 }
 

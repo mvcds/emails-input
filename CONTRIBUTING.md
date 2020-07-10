@@ -12,7 +12,7 @@ You can also run `npm start` to run it in the development mode, which will actua
 
 ## Testing
 
-For testing we're using selenium, so for running it locally (`npm test`) it's necessary to follow [theese instructions](https://www.npmjs.com/package/selenium-webdriver) for your favorite browser.
+For testing we're using selenium, so for running it locally (`npm test`) it's necessary to follow [theese instructions](https://www.npmjs.com/package/selenium-webdriver) for the supported browsers.
 
 The preference is having e2e tests so they can be reproduced in multiple browsers through CI (to be configured).
 
@@ -23,11 +23,11 @@ It's important to notice that to save time, for now, the e2e tests are run again
 
 If you want to run e2e tests, it's necessary that the project is running on the url set on your `.env` (`EI_DEV_SERVER_URL`).
 
+An easy way to run a quicker test is running `npm run dev` which focus only on testin on Chrome.
+
 ## Committing
 
-If you change the code and wish to commit, you need to be running the server, as a first wave of tests is run locally.
-
-It's important to notice that [NVM](https://github.com/nvm-sh/nvm) is used to setup the node version of the application.
+It's important to notice that [NVM](https://github.com/nvm-sh/nvm) is used to setup the node version of the application, and it to commit it properly, you need to first run `nvm use` before the first commit.
 
 ## Example page
 
