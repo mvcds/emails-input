@@ -1,4 +1,4 @@
- import remove from '../icons/icon-remove.svg'
+import remove from '../icons/icon-remove.svg'
 
 function addBlock ({ editor, input }, event) {
   const block = document.createElement('span')

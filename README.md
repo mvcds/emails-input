@@ -9,7 +9,7 @@ An easy way to input emails on your app!
 You need a few ingredients to use this lib
 
 1. A target node e.g. `<div id="emails-input"></div>`
-1. Refer to the relevant CSS file e.g. `<link rel="stylesheet" href="./emails-input.css">`
+1. Refer to the relevant CSS files e.g. `<link rel="stylesheet" href="./emails-input.css">` and `<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">`
 1. The script itself, calling the lhis lib e.g. `<script src="./emails-input.js"></script>`.
 1. "Bind" the script to the target node with JS e.g.
 

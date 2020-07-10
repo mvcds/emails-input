@@ -18,7 +18,7 @@
 }
 
 .emails-input__title {
-  font-family: Open Sans;
+  font-family: "Open Sans", serif;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -41,7 +41,7 @@
 }
 
 .emails-input__block {
-  font-family: Open Sans;
+  font-family: "Open Sans", serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -97,7 +97,7 @@
 }
 
 .emails-input__email {
-  font-family: Open Sans;
+  font-family: Open Sans, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -124,7 +124,7 @@
 .emails-input__footer-button {
   background: #4262FF;
   border-radius: 6px;
-  font-family: Open Sans;
+  font-family: "Open Sans", serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
