@@ -89,6 +89,13 @@
     </code>
   </section>
 
+  <section>
+    <header>Customize</header>
+    <p>You can customize your <code>EmailsInput</code> during creation time</p>
+    <code>EmailsInput(node, { createTitleNodes: () => [document.createTextNode("I am customized")] });</code>
+    <div id="custom"></div>
+  </section>
+
   <script>
     EmailsInput(document.querySelector('#basic-example'));
 
@@ -102,6 +109,12 @@
     var preFilledWithEmails = EmailsInput(document.querySelector('#pre-filled-with-emails'), {
         emails: emails
       });
+
+    EmailsInput(document.querySelector('#custom'), {
+      createTitleNodes: () => [
+        document.createTextNode("I am customized")
+      ]
+    })
 
     function resetPreFilledWithEmails() {
       preFilledWithEmails.setEmails(emails);

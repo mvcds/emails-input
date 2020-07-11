@@ -1,23 +1,25 @@
 import addInput from './add-input.js'
 
-function addContent (node, logic) {
+function addContent (node, logic, options) {
   const content = document.createElement('div')
 
   content.className = 'emails-input__content'
 
   node.appendChild(content)
 
-  addTitle(content)
+  addTitle(content, options)
   addEditor(content, logic)
 }
 
-function addTitle (content) {
-  const title = document.createElement('header')
+function addTitle (content, { createTitleNodes }) {
+  const header = document.createElement('header')
+  const title = createTitleNodes()
 
-  title.className = 'emails-input__title'
-  title.innerHTML = 'Share Board Name with others'
+  header.className = 'emails-input__title'
 
-  content.appendChild(title)
+  title.forEach((node) => header.appendChild(node))
+
+  content.appendChild(header)
 }
 
 function addEditor (content, logic) {

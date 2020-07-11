@@ -169,3 +169,11 @@ it('Reading the example should show the same emails of the block', async () => {
 
   assert.deepStrictEqual(await page.getAlertText(), emails, 'an alert showing the initial emails should appear')
 })
+
+it('Customizes the title', async () => {
+  const selector = '#custom .emails-input__title'
+
+  await page.goTo(EI_DEV_SERVER_URL)
+
+  assert.deepStrictEqual(await page.getText(selector), 'I am customized', 'there should be a custom title for #custom')
+})

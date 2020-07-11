@@ -19,6 +19,40 @@
     return obj;
   }
 
+  function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+
+    for (i = 0; i < sourceKeys.length; i++) {
+      key = sourceKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      target[key] = source[key];
+    }
+
+    return target;
+  }
+
+  function _objectWithoutProperties(source, excluded) {
+    if (source == null) return {};
+    var target = _objectWithoutPropertiesLoose(source, excluded);
+    var key, i;
+
+    if (Object.getOwnPropertySymbols) {
+      var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+      for (i = 0; i < sourceSymbolKeys.length; i++) {
+        key = sourceSymbolKeys[i];
+        if (excluded.indexOf(key) >= 0) continue;
+        if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+        target[key] = source[key];
+      }
+    }
+
+    return target;
+  }
+
   var isNil = function isNil(obj) {
     return obj == null;
   };
@@ -914,19 +948,23 @@
     editor.appendChild(input);
   }
 
-  function addContent(node, logic) {
+  function addContent(node, logic, options) {
     var content = document.createElement('div');
     content.className = 'emails-input__content';
     node.appendChild(content);
-    addTitle(content);
+    addTitle(content, options);
     addEditor(content, logic);
   }
 
-  function addTitle(content) {
-    var title = document.createElement('header');
-    title.className = 'emails-input__title';
-    title.innerHTML = 'Share Board Name with others';
-    content.appendChild(title);
+  function addTitle(content, _ref) {
+    var createTitleNodes = _ref.createTitleNodes;
+    var header = document.createElement('header');
+    var title = createTitleNodes();
+    header.className = 'emails-input__title';
+    title.forEach(function (node) {
+      return header.appendChild(node);
+    });
+    content.appendChild(header);
   }
 
   function addEditor(content, logic) {
@@ -962,9 +1000,9 @@
     footer.appendChild(button);
   }
 
-  function Ui(node, logic) {
+  function Ui(node, logic, options) {
     node.className = 'emails-input';
-    addContent(node, logic);
+    addContent(node, logic, options);
     addFooter(node, logic);
   }
 
@@ -972,15 +1010,22 @@
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
   var CONFIG = {
-    emails: []
+    emails: [],
+    createTitleNodes: function createTitleNodes() {
+      var strong = document.createElement('strong');
+      strong.innerText = "Board Name";
+      return [document.createTextNode("Share "), strong, document.createTextNode(" with others")];
+    }
   };
 
   function EmailsInput(inputContainerNode, config) {
-    var options = _objectSpread(_objectSpread({}, CONFIG), config);
+    var _CONFIG$config = _objectSpread(_objectSpread({}, CONFIG), config),
+        emails = _CONFIG$config.emails,
+        options = _objectWithoutProperties(_CONFIG$config, ["emails"]);
 
     var logic = new Logic();
-    Ui(inputContainerNode, logic);
-    logic.setEmails(options.emails);
+    Ui(inputContainerNode, logic, options);
+    logic.setEmails(emails);
     return {
       setEmails: logic.setEmails,
       getEmails: logic.getEmails

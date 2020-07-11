@@ -2,17 +2,28 @@ import Logic from './logic/index.js'
 import Ui from './ui/index.js'
 
 const CONFIG = {
-  emails: []
+  emails: [],
+  createTitleNodes () {
+    const strong = document.createElement('strong')
+
+    strong.innerText = 'Board Name'
+
+    return [
+      document.createTextNode('Share '),
+      strong,
+      document.createTextNode(' with others')
+    ]
+  }
 }
 
 function EmailsInput (inputContainerNode, config) {
-  const options = { ...CONFIG, ...config }
+  const { emails, ...options } = { ...CONFIG, ...config }
 
   const logic = new Logic()
 
-  Ui(inputContainerNode, logic)
+  Ui(inputContainerNode, logic, options)
 
-  logic.setEmails(options.emails)
+  logic.setEmails(emails)
 
   return {
     setEmails: logic.setEmails,
