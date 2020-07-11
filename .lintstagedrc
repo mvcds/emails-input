@@ -1,2 +1,0 @@
-'(src|e2e)/*.js':
-  - npm run lint
