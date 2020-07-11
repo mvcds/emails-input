@@ -13,6 +13,7 @@
     "test:e2e": "run-p test:e2e:*",
     "test:e2e:chrome": "cross-env EI_BROWSER=chrome npm run dev",
     "test:e2e:firefox": "cross-env EI_BROWSER=firefox npm run dev",
+    "test:e2e:ie": "cross-env EI_BROWSER=ie npm run dev",
     "pretest": "npm run build",
     "ghp": "npm run build && rm -fr docs && cp -R public docs && mv dist/emails-input.umd.js docs/emails-input.umd.js",
     "dev": "jest e2e/selenium.js"

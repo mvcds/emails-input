@@ -1,5 +1,6 @@
 require('dotenv').config()
 const assert = require('assert')
+const path = require('path')
 const webdriver = require('selenium-webdriver')
 
 const Page = require('./page')
@@ -27,6 +28,18 @@ function createCapabilities () {
     case 'firefox': {
       require('geckodriver')
       capabilities = webdriver.Capabilities.firefox()
+      break
+    }
+    case 'ie': {
+      // HACK: include IEDriver path by nuget
+      const driverPath = path.join(
+        __dirname,
+        '../Selenium.WebDriver.IEDriver.3.150.0/driver/'
+      )
+      process.env.PATH = `${process.env.PATH};${driverPath};`
+      capabilities = webdriver.Capabilities.ie()
+      capabilities.set('ignoreProtectedModeSettings', true)
+      capabilities.set('ignoreZoomSetting', true)
       break
     }
     default:
