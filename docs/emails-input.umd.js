@@ -966,7 +966,7 @@
     return {};
   }
 
-  globalThis.EmailsInput = EmailsInput;
+  (globalThis || window).EmailsInput = EmailsInput;
 
   return EmailsInput;
 
