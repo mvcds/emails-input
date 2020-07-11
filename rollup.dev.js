@@ -4,7 +4,7 @@ import rollup from './rollup.config'
 
 const webserver = serve({
   open: true,
-  contentBase: ['dist', 'public']
+  contentBase: ['dist', 'docs']
 })
 
 export default rollup.map(c => ({
