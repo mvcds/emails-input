@@ -44,3 +44,11 @@ If `EI_DEV_SERVER_URL` is configured to server available by `npm run start` rath
 The folder `docs` contains the example page which will be published as a GitHub Page and, during development, it is used for both development and automated e2e tests.
 
 The command `npm run ghp` should be used create a new version of this page but is also run on commit, so you don't have to worry much.
+
+## CI
+
+The original idea was to setup a CI which would run all e2e on different browsers but at the moment it only runs lint.
+
+For CI we use github's actions found in `.github/workflows`.
+
+If you want to test a workflow locally, fire up a docker and run `act`.
