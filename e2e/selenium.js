@@ -50,11 +50,11 @@ it('Email block should be created by entering comma', async () => {
   assert(await page.isPresent(input), 'the demo page should contain the input for #basic-example')
   assert.deepStrictEqual(await page.isPresent(blocks), false, 'no block should be available')
 
-  page.type(input, 'marcos,')
+  page.type(input, '   fffffff   ,   gggggg   ')
 
   await sleep(wait)
 
-  assert(await page.isPresent(blocks), 'a block should be created')
+  assert(await page.count(blocks), 2, 'two blocks should be created')
   assert.deepStrictEqual(await page.getText(input), '', 'input has to be clean')
 })
 
