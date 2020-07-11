@@ -2131,7 +2131,7 @@
         const raw = randomEmail();
 
         if (!isEmailValid(raw)) {
-          return logic.addRandomEmail();
+          return logic.addRandomEmail()
         }
 
         logic.addEmail(raw);
