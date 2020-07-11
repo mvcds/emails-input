@@ -3,23 +3,15 @@ name: Main
 on: [push]
 
 jobs:
-  test:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 10.16.0
       - run: npm i
       - run: npm run lint
-  # test-with-puppeteer:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-  #     - run: |
-  #         nvm i
-  #         nvm run build
-  #     - run: nvm run test
+      # - run: npm run test
+      # - run: npm run ghp
+      # push changes to the docs automatically
