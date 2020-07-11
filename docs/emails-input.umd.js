@@ -966,7 +966,11 @@
     return {};
   }
 
-  (globalThis || window).EmailsInput = EmailsInput;
+  try {
+    globalThis.EmailsInput = EmailsInput;
+  } catch (e) {
+    window.EmailsInput = EmailsInput;
+  }
 
   return EmailsInput;
 
