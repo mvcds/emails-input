@@ -2,7 +2,7 @@
 
 An easy way to input emails on your app!
 
-[Click here](https://miro.com/app/board/o9J_kp_qvfY=/) to check the progress of this project
+[Click here](https://miro.com/app/board/o9J_kp_qvfY=/) to check the progress of this project.
 
 ## Basic Example
 
@@ -20,7 +20,7 @@ You need a few ingredients to use this lib
 
 `EmailsInput` is a function that takes as first argument a node where a `EmailEditor` will be rendered, the second and optional argument is an object containing some members which change how the instance behaves/looks.
 
-Copy the files under `docs` folder, and then reference them into the correct path, to your browser project to get started with using this lib.
+Copy the files under `docs` folder, and then reference them into the correct path, to your browser project to get started with using this lib. This folders serves the same content available at the [example page](https://mvcds.github.io/emails-input/).
 
 ## API
 
