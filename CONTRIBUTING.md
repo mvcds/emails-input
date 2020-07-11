@@ -35,6 +35,6 @@ It's important to notice that NVM is used to setup the node version of the appli
 
 ## Example page
 
-The folder `docs` is generated automatically, so that it can be shown in the GitHub's page.
+The folder `docs` contains the example page which will be published as a GitHub Page and, during development, it is used for both development and automated e2e tests.
 
-The command for it is `npm run ghp` and it was tested on mac's only.
+The command `npm run ghp` should be used create a new version of this page.
