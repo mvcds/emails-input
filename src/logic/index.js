@@ -41,7 +41,7 @@ function Logic () {
       const raw = email()
 
       if (!isEmailValid(raw)) {
-        return logic.addRandomEmail();
+        return logic.addRandomEmail()
       }
 
       logic.addEmail(raw)

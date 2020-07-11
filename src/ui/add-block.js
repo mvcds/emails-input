@@ -26,7 +26,7 @@ function addLabel (block, event) {
 function addRemoveButton (block, editor, event) {
   const button = document.createElement('span')
 
-  button.innerHTML = remove;
+  button.innerHTML = remove
   button.className = 'emails-input__block-remove'
 
   button.addEventListener('click', function onRemoveBlock () {

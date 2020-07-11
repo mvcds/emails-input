@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import inlineSvg from 'rollup-plugin-inline-svg';
+import inlineSvg from 'rollup-plugin-inline-svg'
 
 import pkg from './package.json'
 
