@@ -1,0 +1,97 @@
+name: xbrowser
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: xbrowser-npm-${{ hashFiles('**\package-lock.json') }}
+          restore-keys: |
+            xbrowser-npm-
+      - name: cache dist
+        uses: actions/cache@v1
+        with:
+          path: dist
+          key: dist-${GITHUB_SHA}
+          restore-keys: |
+            dist-${GITHUB_SHA}
+      - run: npm install
+      - run: npm run build
+  e2e-win-matrix:
+    needs: [build]
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        browser: [ie, firefox, chrome]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Use node_modules cache
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: xbrowser-npm-${{ hashFiles('**\package-lock.json') }}
+          restore-keys: |
+            xbrowser-npm-
+      - name: Use dist cache
+        uses: actions/cache@v1
+        with:
+          path: dist
+          key: dist-${GITHUB_SHA}
+          restore-keys: |
+            dist-${GITHUB_SHA}
+      # For IE Webdriver
+      - name: Cache IEDriver
+        uses: actions/cache@v1
+        id: iedriver-cache
+        with:
+          path: Selenium.WebDriver.IEDriver.3.150.0
+          key: IEDriver.3.150.0
+      - if: matrix.browser == 'ie'
+        uses: warrenbuckley/Setup-Nuget@v1
+      - if: matrix.browser == 'ie' && steps.iedriver-cache.outputs.cache-hit != 'true'
+        run: nuget install Selenium.WebDriver.IEDriver -Version 3.150.0
+      # Run
+      # - run: npm run test:karma:${{ matrix.browser }}
+      - run: npm run test:e2e:${{ matrix.browser }}
+
+  # does not work: You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver
+  # e2e-safari:
+  #   runs-on: macos-latest
+  #   needs: [build]
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #     - uses: actions/cache@v1
+  #       with:
+  #         path:~/.npm
+  #         key: xbrowser-mac-npm-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+  #         restore-keys: |
+  #           xbrowser-mac-npm-
+  #     - uses: actions/cache@v1
+  #       with:
+  #         path: dist
+  #         key: dist-${GITHUB_SHA}
+  #         restore-keys: |
+  #           dist-${GITHUB_SHA}
+  #     - run: npm i
+  #     - run: |
+  #         defaults write com.apple.Safari IncludeDevelopMenu YES
+  #         defaults write com.apple.Safari AllowRemoteAutomation 1
+  #         sudo safaridriver --enable
+  #         safaridriver -p 0 &
+  #     # - run: npm run test:karma:safari
+  #     - run: npm run test:e2e:safari

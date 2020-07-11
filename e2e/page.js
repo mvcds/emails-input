@@ -10,7 +10,7 @@ class Page {
   }
 
   async close () {
-    return this._driver.quit()
+    return this._driver.close()
   }
 
   async isPresent (selector) {

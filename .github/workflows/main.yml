@@ -1,0 +1,25 @@
+name: Main
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm i
+      - run: npm run lint
+  # test-with-puppeteer:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #     - run: |
+  #         nvm i
+  #         nvm run build
+  #     - run: nvm run test

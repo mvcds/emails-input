@@ -24,6 +24,11 @@ function createCapabilities () {
   let capabilities
 
   switch (EI_BROWSER) {
+    case 'firefox': {
+      require('geckodriver')
+      capabilities = webdriver.Capabilities.firefox()
+      break
+    }
     default:
       require('chromedriver')
       capabilities = webdriver.Capabilities.chrome()

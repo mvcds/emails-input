@@ -5,6 +5,8 @@
 After cloning this project, install its dependencies using `npm i`. This project also uses the projects bellow, so you'll have to install them in order to contribute:
 
 * [NVM](https://github.com/nvm-sh/nvm)
+* [act](https://github.com/nektos/act)
+  * [Docker](https://www.docker.com/) (needs to be running for act to work)
 
 Before doing anything, duplicate `.env.example`, renaming the copy to `.env` so you can have the same variables as they are used on code (if the variable is on the `package.json`, it will take precedence).
 

@@ -12,6 +12,7 @@
     "test": "run-p test:*",
     "test:e2e": "run-p test:e2e:*",
     "test:e2e:chrome": "cross-env EI_BROWSER=chrome npm run dev",
+    "test:e2e:firefox": "cross-env EI_BROWSER=firefox npm run dev",
     "pretest": "npm run build",
     "ghp": "npm run build && rm -fr docs && cp -R public docs && mv dist/emails-input.umd.js docs/emails-input.umd.js",
     "dev": "jest e2e/selenium.js"
@@ -41,6 +42,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "geckodriver": "^1.19.1",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
