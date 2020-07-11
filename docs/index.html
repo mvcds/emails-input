@@ -29,6 +29,26 @@
     section + section {
       margin-top: 16px;
     }
+
+    code + div {
+      margin-top: 16px;
+    }
+
+    code + code {
+      margin-top: 8px;
+      display: block;
+    }
+
+    .button-reset {
+      background: white;
+      border: 1px solid black;
+      cursor: pointer;
+      float: right;
+    }
+
+    .button-reset + .button-reset {
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
@@ -48,19 +68,35 @@
     </p>
     <div id="basic-example"></div>
   </section>
+
   <section>
     <header>Pre Filled With Emails</header>
-    <code>EmailsInput(node, {
-      emails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com']
-    });</code>
     <p>An <code>EmailsInput</code> instance accepts a list of emails to prefill the editor with them.</p>
+    <code>var emails = ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com'];</code>
+    <code>var input = EmailsInput(node, { emails });</code>
     <div id="pre-filled-with-emails"></div>
+    <p>It's also possible to set the emails for the instance later. This is used in the reset button below.</p>
+    <code>input.setEmails(emails);</code>
+    <button class="button-reset" onclick="resetPreFilledWithEmails()" name="reset">Reset</button>
   </section>
+
   <script>
     EmailsInput(document.querySelector('#basic-example'));
-    EmailsInput(document.querySelector('#pre-filled-with-emails'), {
-      emails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com']
-    });
+
+    var emails = [
+      'john@miro.com',
+      'invalid.email',
+      'mike@miro.com',
+      'alexander@miro.com'
+    ]
+
+    var preFilledWithEmails = EmailsInput(document.querySelector('#pre-filled-with-emails'), {
+        emails: emails
+      });
+
+    function resetPreFilledWithEmails() {
+      preFilledWithEmails.setEmails(emails);
+    }
   </script>
 </body>
 </html>

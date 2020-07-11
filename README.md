@@ -28,7 +28,7 @@ For a complete example, check the HTML file under the `docs` folder, as that fil
 
 The main function of this lib, it is responsible to convert the node into the editor, so to speak.
 
-`EmailsInput(node [, config])`
+`var instance = EmailsInput(node [, config])`
 
 Where `config` is an object containing the following properties:
 
@@ -36,6 +36,16 @@ Where `config` is an object containing the following properties:
 {
   emails: [], //initial list of emails
 }
+```
+
+### Instances
+
+#### setEmails`
+
+Accepts a list of emails in text format to redefine what is available on the instance.
+
+```js
+instance.setEmails(['marcos.silva@miro.com'])
 ```
 
 ## Want to help?

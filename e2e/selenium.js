@@ -170,3 +170,24 @@ it('"Add email" button creates a random email on the editor', async () => {
 
   assert.deepStrictEqual(await page.count(blocks), 5, 'there should be 5 emails created on #basic-example')
 })
+
+it('Reseting the example should make it back to its original state', async () => {
+  const blocks = '#pre-filled-with-emails .emails-input__block'
+  const button = '#pre-filled-with-emails .emails-input__add-email'
+  const reset = '[name="reset"]'
+
+  await page.goTo(EI_DEV_SERVER_URL)
+
+  assert.deepStrictEqual(await page.count(blocks), 4, 'there should be 4 emails prefilling #pre-filled-with-emails')
+
+  page.click(button)
+  page.click(button)
+  page.click(button)
+  page.click(button)
+  page.click(button)
+  page.click(reset)
+
+  await sleep(wait)
+
+  assert.deepStrictEqual(await page.count(blocks), 4, 'there should be 4 emails prefilling #pre-filled-with-emails')
+})

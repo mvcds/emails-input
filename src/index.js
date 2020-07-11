@@ -12,9 +12,11 @@ function EmailsInput (inputContainerNode, config) {
 
   Ui(inputContainerNode, logic)
 
-  options.emails.forEach(logic.addEmail)
+  logic.setEmails(options.emails)
 
-  return {}
+  return {
+    setEmails: logic.setEmails
+  }
 }
 
 try {

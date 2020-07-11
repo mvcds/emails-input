@@ -779,19 +779,16 @@
           return;
         }
 
-        var data = {
-          email: email,
-          id: id++,
-          isValid: isEmailValid(email)
-        };
-        logic.emails.push(data);
         var addEmailEvent = {
           email: email,
-          isValid: data.isValid,
+          id: id++,
+          isValid: isEmailValid(email),
           undo: function undo() {
-            logic.removeEmail(data.id);
+            logic.removeEmail(addEmailEvent.id);
+            addEmailEvent.onRemoveEmail && addEmailEvent.onRemoveEmail();
           }
         };
+        logic.emails.push(addEmailEvent);
         logic.onAddEmail && logic.onAddEmail(addEmailEvent);
       },
       removeEmail: function removeEmail(id) {
@@ -814,6 +811,14 @@
         }
 
         logic.addEmail(raw);
+      },
+      setEmails: function setEmails() {
+        var emails = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        logic.emails.forEach(function (_ref2) {
+          var undo = _ref2.undo;
+          return undo();
+        });
+        emails.forEach(logic.addEmail);
       },
       emails: []
     };
@@ -855,10 +860,12 @@
     var button = document.createElement('span');
     button.innerHTML = remove;
     button.className = 'emails-input__block-remove';
-    button.addEventListener('click', function onRemoveBlock() {
-      editor.removeChild(block);
-      addEmailEvent.undo();
-    });
+    button.addEventListener('click', addEmailEvent.undo);
+
+    addEmailEvent.onRemoveEmail = function () {
+      return editor.removeChild(block);
+    };
+
     block.appendChild(button);
   }
 
@@ -964,8 +971,10 @@
 
     var logic = new Logic();
     Ui(inputContainerNode, logic);
-    options.emails.forEach(logic.addEmail);
-    return {};
+    logic.setEmails(options.emails);
+    return {
+      setEmails: logic.setEmails
+    };
   }
 
   try {

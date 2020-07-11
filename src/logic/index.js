@@ -11,21 +11,17 @@ function Logic () {
         return
       }
 
-      const data = {
-        email,
-        id: id++,
-        isValid: isEmailValid(email)
-      }
-
-      logic.emails.push(data)
-
       const addEmailEvent = {
         email,
-        isValid: data.isValid,
-        undo: () => {
-          logic.removeEmail(data.id)
+        id: id++,
+        isValid: isEmailValid(email),
+        undo () {
+          logic.removeEmail(addEmailEvent.id)
+          addEmailEvent.onRemoveEmail && addEmailEvent.onRemoveEmail()
         }
       }
+
+      logic.emails.push(addEmailEvent)
 
       logic.onAddEmail && logic.onAddEmail(addEmailEvent)
     },
@@ -46,6 +42,10 @@ function Logic () {
       }
 
       logic.addEmail(raw)
+    },
+    setEmails (emails = []) {
+      logic.emails.forEach(({ undo }) => undo())
+      emails.forEach(logic.addEmail)
     },
     emails: []
   }

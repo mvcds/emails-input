@@ -29,10 +29,9 @@ function addRemoveButton (block, editor, addEmailEvent) {
   button.innerHTML = remove
   button.className = 'emails-input__block-remove'
 
-  button.addEventListener('click', function onRemoveBlock () {
-    editor.removeChild(block)
-    addEmailEvent.undo()
-  })
+  button.addEventListener('click', addEmailEvent.undo)
+
+  addEmailEvent.onRemoveEmail = () => editor.removeChild(block)
 
   block.appendChild(button)
 }
