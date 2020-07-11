@@ -52,6 +52,10 @@
     .example-button + .example-button {
       margin-right: 8px;
     }
+
+    .my-custom-input .emails-input__editor {
+      background: pink;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +96,7 @@
   <section>
     <header>Customize</header>
     <p>You can customize your <code>EmailsInput</code> during creation time</p>
-    <code>EmailsInput(node, { createTitleNodes: () => [document.createTextNode("I am customized")] });</code>
+    <code>EmailsInput(node, { createTitleNodes: () => [document.createTextNode("I am customized")], classes: 'my-custom-input' });</code>
     <div id="custom"></div>
   </section>
 
@@ -113,7 +117,8 @@
     EmailsInput(document.querySelector('#custom'), {
       createTitleNodes: () => [
         document.createTextNode("I am customized")
-      ]
+      ],
+      classes: 'my-custom-input'
     })
 
     function resetPreFilledWithEmails() {

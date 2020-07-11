@@ -1000,8 +1000,11 @@
     footer.appendChild(button);
   }
 
-  function Ui(node, logic, options) {
-    node.className = 'emails-input';
+  function Ui(node, logic, _ref) {
+    var classes = _ref.classes,
+        options = _objectWithoutProperties(_ref, ["classes"]);
+
+    node.className = "emails-input ".concat(classes);
     addContent(node, logic, options);
     addFooter(node, logic);
   }
@@ -1013,9 +1016,10 @@
     emails: [],
     createTitleNodes: function createTitleNodes() {
       var strong = document.createElement('strong');
-      strong.innerText = "Board Name";
-      return [document.createTextNode("Share "), strong, document.createTextNode(" with others")];
-    }
+      strong.innerText = 'Board Name';
+      return [document.createTextNode('Share '), strong, document.createTextNode(' with others')];
+    },
+    classes: ''
   };
 
   function EmailsInput(inputContainerNode, config) {

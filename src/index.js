@@ -13,7 +13,8 @@ const CONFIG = {
       strong,
       document.createTextNode(' with others')
     ]
-  }
+  },
+  classes: ''
 }
 
 function EmailsInput (inputContainerNode, config) {

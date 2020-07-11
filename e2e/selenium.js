@@ -177,3 +177,11 @@ it('Customizes the title', async () => {
 
   assert.deepStrictEqual(await page.getText(selector), 'I am customized', 'there should be a custom title for #custom')
 })
+
+it('Customizes the style', async () => {
+  const selector = '#custom.emails-input.my-custom-input'
+
+  await page.goTo(EI_DEV_SERVER_URL)
+
+  assert.deepStrictEqual(await page.isPresent(selector), true, 'there should a match to the selector')
+})

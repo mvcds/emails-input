@@ -36,6 +36,7 @@ Where `config` is an object containing the following properties:
 {
   emails: [], //initial list of emails e.g ['marcos.silva@miro.com']
   createTitleNodes: () => [] //a function which returns a list of nodes to customize the title
+  classes: '' //extra class names for customize the input
 }
 ```
 
