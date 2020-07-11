@@ -15,7 +15,8 @@ function EmailsInput (inputContainerNode, config) {
   logic.setEmails(options.emails)
 
   return {
-    setEmails: logic.setEmails
+    setEmails: logic.setEmails,
+    getEmails: logic.getEmails
   }
 }
 

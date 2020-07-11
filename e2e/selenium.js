@@ -191,3 +191,19 @@ it('Reseting the example should make it back to its original state', async () =>
 
   assert.deepStrictEqual(await page.count(blocks), 4, 'there should be 4 emails prefilling #pre-filled-with-emails')
 })
+
+it('Reading the example should show the same emails of the block', async () => {
+  const blocks = '#pre-filled-with-emails .emails-input__block'
+  const read = '[name="read"]'
+  const emails = 'john@miro.com,invalid.email,mike@miro.com,alexander@miro.com'
+
+  await page.goTo(EI_DEV_SERVER_URL)
+
+  assert.deepStrictEqual(await page.count(blocks), 4, 'there should be 4 emails prefilling #pre-filled-with-emails')
+
+  page.click(read)
+
+  await sleep(wait)
+
+  assert.deepStrictEqual(await page.getAlertText(), emails, 'an alert showing the initial emails should appear')
+})

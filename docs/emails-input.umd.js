@@ -820,6 +820,12 @@
         });
         emails.forEach(logic.addEmail);
       },
+      getEmails: function getEmails() {
+        return logic.emails.map(function (_ref3) {
+          var email = _ref3.email;
+          return email;
+        });
+      },
       emails: []
     };
     return logic;
@@ -973,7 +979,8 @@
     Ui(inputContainerNode, logic);
     logic.setEmails(options.emails);
     return {
-      setEmails: logic.setEmails
+      setEmails: logic.setEmails,
+      getEmails: logic.getEmails
     };
   }
 

@@ -30,23 +30,26 @@
       margin-top: 16px;
     }
 
+    section > code {
+      justify-content: space-between;
+      display: flex;
+    }
+
     code + div {
       margin-top: 16px;
     }
 
     code + code {
       margin-top: 8px;
-      display: block;
     }
 
-    .button-reset {
+    .example-button {
       background: white;
       border: 1px solid black;
       cursor: pointer;
-      float: right;
     }
 
-    .button-reset + .button-reset {
+    .example-button + .example-button {
       margin-right: 8px;
     }
   </style>
@@ -75,9 +78,15 @@
     <code>var emails = ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com'];</code>
     <code>var input = EmailsInput(node, { emails });</code>
     <div id="pre-filled-with-emails"></div>
-    <p>It's also possible to set the emails for the instance later. This is used in the reset button below.</p>
-    <code>input.setEmails(emails);</code>
-    <button class="button-reset" onclick="resetPreFilledWithEmails()" name="reset">Reset</button>
+    <p>It's also possible to get and set the emails for the instance later. This is used respectivelly in the read and reset button below.</p>
+    <code>
+      input.getEmails();
+      <button class="example-button" onclick="readPreFilledWithEmails()" name="read">Read</button>
+    </code>
+    <code>
+      input.setEmails(emails);
+      <button class="example-button" onclick="resetPreFilledWithEmails()" name="reset">Reset</button>
+    </code>
   </section>
 
   <script>
@@ -96,6 +105,10 @@
 
     function resetPreFilledWithEmails() {
       preFilledWithEmails.setEmails(emails);
+    }
+
+    function readPreFilledWithEmails() {
+      alert(preFilledWithEmails.getEmails(emails))
     }
   </script>
 </body>

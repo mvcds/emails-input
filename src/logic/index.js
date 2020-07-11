@@ -47,6 +47,9 @@ function Logic () {
       logic.emails.forEach(({ undo }) => undo())
       emails.forEach(logic.addEmail)
     },
+    getEmails () {
+      return logic.emails.map(({ email }) => email)
+    },
     emails: []
   }
 

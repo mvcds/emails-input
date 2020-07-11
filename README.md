@@ -40,12 +40,19 @@ Where `config` is an object containing the following properties:
 
 ### Instances
 
-#### setEmails`
+#### setEmails
 
-Accepts a list of emails in text format to redefine what is available on the instance.
+Accepts a list of strings (the emails) to redefine what is available on the instance.
 
 ```js
 instance.setEmails(['marcos.silva@miro.com'])
+```
+#### getEmails
+
+Gets a list of strings (the emails) owned by the instance.
+
+```js
+instance.getEmails() // => ['jhon@miro.com']
 ```
 
 ## Want to help?
