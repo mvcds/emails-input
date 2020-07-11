@@ -1,29 +1,29 @@
 import remove from '../icons/icon-remove.svg'
 
-function addBlock ({ editor, input }, event) {
+function addBlock ({ editor, input }, addEmailEvent) {
   const block = document.createElement('span')
 
   block.className = 'emails-input__block'
 
-  if (!event.isValid) {
+  if (!addEmailEvent.isValid) {
     block.className = block.className + ' emails-input__block--invalid'
   }
 
-  addLabel(block, event)
-  addRemoveButton(block, editor, event)
+  addLabel(block, addEmailEvent)
+  addRemoveButton(block, editor, addEmailEvent)
 
   editor.insertBefore(block, input)
 }
 
-function addLabel (block, event) {
+function addLabel (block, addEmailEvent) {
   const label = document.createElement('span')
-  label.innerHTML = event.email
+  label.innerHTML = addEmailEvent.email
   label.className = 'emails-input__block-email'
 
   block.appendChild(label)
 }
 
-function addRemoveButton (block, editor, event) {
+function addRemoveButton (block, editor, addEmailEvent) {
   const button = document.createElement('span')
 
   button.innerHTML = remove
@@ -31,7 +31,7 @@ function addRemoveButton (block, editor, event) {
 
   button.addEventListener('click', function onRemoveBlock () {
     editor.removeChild(block)
-    event.onRemoveEmail()
+    addEmailEvent.undo()
   })
 
   block.appendChild(button)

@@ -785,17 +785,19 @@
           isValid: isEmailValid(email)
         };
         logic.emails.push(data);
-        var event = {
+        var addEmailEvent = {
           email: email,
           isValid: data.isValid,
-          onRemoveEmail: function onRemoveEmail() {
-            var index = logic.emails.findIndex(function (x) {
-              return x.id === data.id;
-            });
-            logic.emails.splice(index, 1);
+          undo: function undo() {
+            logic.removeEmail(data.id);
           }
         };
-        logic.onAddEmail && logic.onAddEmail(event);
+        logic.onAddEmail && logic.onAddEmail(addEmailEvent);
+      },
+      removeEmail: function removeEmail(id) {
+        logic.emails = logic.emails.filter(function (x) {
+          return x.id !== id;
+        });
       },
       getEmailsCount: function getEmailsCount() {
         var validEmails = logic.emails.filter(function (_ref) {
@@ -827,35 +829,35 @@
 
   var remove = '<svg viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.8L7.2 0L4 3.2L0.8 0L0 0.8L3.2 4L0 7.2L0.8 8L4 4.8L7.2 8L8 7.2L4.8 4L8 0.8Z" fill="#050038"/></svg>';
 
-  function addBlock(_ref, event) {
+  function addBlock(_ref, addEmailEvent) {
     var editor = _ref.editor,
         input = _ref.input;
     var block = document.createElement('span');
     block.className = 'emails-input__block';
 
-    if (!event.isValid) {
+    if (!addEmailEvent.isValid) {
       block.className = block.className + ' emails-input__block--invalid';
     }
 
-    addLabel(block, event);
-    addRemoveButton(block, editor, event);
+    addLabel(block, addEmailEvent);
+    addRemoveButton(block, editor, addEmailEvent);
     editor.insertBefore(block, input);
   }
 
-  function addLabel(block, event) {
+  function addLabel(block, addEmailEvent) {
     var label = document.createElement('span');
-    label.innerHTML = event.email;
+    label.innerHTML = addEmailEvent.email;
     label.className = 'emails-input__block-email';
     block.appendChild(label);
   }
 
-  function addRemoveButton(block, editor, event) {
+  function addRemoveButton(block, editor, addEmailEvent) {
     var button = document.createElement('span');
     button.innerHTML = remove;
     button.className = 'emails-input__block-remove';
     button.addEventListener('click', function onRemoveBlock() {
       editor.removeChild(block);
-      event.onRemoveEmail();
+      addEmailEvent.undo();
     });
     block.appendChild(button);
   }

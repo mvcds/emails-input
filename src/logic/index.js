@@ -19,17 +19,18 @@ function Logic () {
 
       logic.emails.push(data)
 
-      const event = {
+      const addEmailEvent = {
         email,
         isValid: data.isValid,
-        onRemoveEmail: () => {
-          const index = logic.emails.findIndex(x => x.id === data.id)
-
-          logic.emails.splice(index, 1)
+        undo: () => {
+          logic.removeEmail(data.id)
         }
       }
 
-      logic.onAddEmail && logic.onAddEmail(event)
+      logic.onAddEmail && logic.onAddEmail(addEmailEvent)
+    },
+    removeEmail (id) {
+      logic.emails = logic.emails.filter(x => x.id !== id)
     },
     getEmailsCount () {
       const validEmails = logic.emails
