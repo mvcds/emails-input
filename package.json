@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rollup -c",
     "start": "npm run build -- rollup.dev.js -w",
-    "lint": "eslint . --fix",
+    "lint:js": "eslint . --fix",
+    "lint:css": "stylelint 'docs/*.css' --fix",
     "test": "run-p test:*",
     "test:e2e": "run-p test:e2e:*",
     "test:e2e:chrome": "cross-env EI_BROWSER=chrome npm run dev",
@@ -55,7 +56,9 @@
     "rollup": "^2.21.0",
     "rollup-plugin-inline-svg": "github:mvcds/rollup-plugin-inline-svg#distribution",
     "rollup-plugin-serve": "^1.0.1",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "stylelint": "^13.6.1",
+    "stylelint-config-standard": "^20.0.0"
   },
   "husky": {
     "hooks": {

@@ -1,5 +1,6 @@
 module.exports = {
-  '**/*.js': () => 'npm run lint',
+  '**/*.js': () => 'npm run lint:js',
+  '**/*.css': () => 'npm run lint:css',
   '(src|e2e)/**/*.js': () => [
     'npm run ghp',
     'git add docs',
