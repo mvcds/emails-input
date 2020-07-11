@@ -20,7 +20,7 @@ You need a few ingredients to use this lib
 
 `EmailsInput` is a function that takes as first argument a node where a `EmailEditor` will be rendered, the second and optional argument is an object containing some members which change how the instance behaves/looks.
 
-Copy the files under `docs` folder, and then reference them into the correct path, to your browser project to get started with using this lib. This folders serves the same content available at the [example page](https://mvcds.github.io/emails-input/).
+For a complete example, check the HTML file under the `docs` folder, as that file serves the same content available at the [example page](https://mvcds.github.io/emails-input/). You can also copy or reference the files from `docs` to use in your own projects.
 
 ## API
 
@@ -40,4 +40,4 @@ Where `config` is an object containing the following properties:
 
 ## Want to help?
 
-Check our [contribution guide](./CONTRIBUTING.md) for instructions on what to do after cloning this project - how to develop and how to test
+Check our [contribution guide](./CONTRIBUTING.md) for instructions about how to develop and test after cloning this project.

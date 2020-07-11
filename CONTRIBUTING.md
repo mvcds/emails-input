@@ -2,7 +2,9 @@
 
 ## Setup
 
-After cloning this project, install its dependencies using `npm i`.
+After cloning this project, install its dependencies using `npm i`. This project also uses the projects bellow, so you'll have to install them in order to contribute:
+
+* [NVM](https://github.com/nvm-sh/nvm)
 
 Before doing anything, duplicate `.env.example`, renaming the copy to `.env` so you can have the same variables as they are used on code (if the variable is on the `package.json`, it will take precedence).
 
@@ -27,7 +29,7 @@ An easy way to run a quicker test is running `npm run dev` which focus only on t
 
 ## Committing
 
-It's important to notice that [NVM](https://github.com/nvm-sh/nvm) is used to setup the node version of the application, and it to commit it properly, you need to first run `nvm use` before the first commit.
+It's important to notice that NVM is used to setup the node version of the application, and it to commit it properly, you need to first run `nvm use` before the first commit.
 
 ## Example page
 
