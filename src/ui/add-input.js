@@ -1,5 +1,3 @@
-import addBlock from './add-block.js'
-
 function addInput (editor, logic) {
   const input = document.createElement('input')
 
@@ -37,9 +35,9 @@ function addInput (editor, logic) {
     }, 0)
   })
 
-  logic.onAddEmail = addBlock.bind(null, { editor, input })
-
   editor.appendChild(input)
+
+  return input
 }
 
 export default addInput

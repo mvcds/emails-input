@@ -803,7 +803,8 @@
   };
 
   function Logic() {
-    //  necessary because text can be repeated
+    var observers = []; //  an id necessary because text can be repeated
+
     var id = 0;
     var logic = {
       addEmail: function addEmail(raw) {
@@ -816,20 +817,26 @@
         var addEmailEvent = {
           email: email,
           id: id++,
-          isValid: isEmailValid(email),
-          undo: function undo() {
-            logic.emails = logic.emails.filter(function (email) {
-              return email.id !== addEmailEvent.id;
-            });
-            addEmailEvent.onRemoveEmail && addEmailEvent.onRemoveEmail();
-          }
+          isValid: isEmailValid(email)
         };
         logic.emails.push(addEmailEvent);
-        logic.onAddEmail && logic.onAddEmail(addEmailEvent);
+        observers.forEach(function (_ref) {
+          var onAddEmail = _ref.onAddEmail;
+          onAddEmail && onAddEmail(addEmailEvent);
+        });
+      },
+      removeEmail: function removeEmail(id) {
+        logic.emails = logic.emails.filter(function (email) {
+          return email.id !== id;
+        });
+        observers.forEach(function (_ref2) {
+          var onRemoveEmail = _ref2.onRemoveEmail;
+          onRemoveEmail && onRemoveEmail(id);
+        });
       },
       getEmailsCount: function getEmailsCount() {
-        var validEmails = logic.emails.filter(function (_ref) {
-          var isValid = _ref.isValid;
+        var validEmails = logic.emails.filter(function (_ref3) {
+          var isValid = _ref3.isValid;
           return isValid;
         });
         alert(validEmails.length);
@@ -845,17 +852,20 @@
       },
       setEmails: function setEmails() {
         var emails = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-        logic.emails.forEach(function (_ref2) {
-          var undo = _ref2.undo;
-          return undo();
+        logic.emails.forEach(function (_ref4) {
+          var id = _ref4.id;
+          return logic.removeEmail(id);
         });
         emails.forEach(logic.addEmail);
       },
       getEmails: function getEmails() {
-        return logic.emails.map(function (_ref3) {
-          var email = _ref3.email;
+        return logic.emails.map(function (_ref5) {
+          var email = _ref5.email;
           return email;
         });
+      },
+      register: function register(callbacks) {
+        observers.push(callbacks);
       },
       emails: []
     };
@@ -867,43 +877,6 @@
     //  eslint-disable-next-line no-useless-escape
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
-  }
-
-  var remove = '<svg viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.8L7.2 0L4 3.2L0.8 0L0 0.8L3.2 4L0 7.2L0.8 8L4 4.8L7.2 8L8 7.2L4.8 4L8 0.8Z" fill="#050038"/></svg>';
-
-  function addBlock(_ref, addEmailEvent) {
-    var editor = _ref.editor,
-        input = _ref.input;
-    var block = document.createElement('span');
-    block.className = 'emails-input__block';
-
-    if (!addEmailEvent.isValid) {
-      block.className = block.className + ' emails-input__block--invalid';
-    }
-
-    addLabel(block, addEmailEvent);
-    addRemoveButton(block, editor, addEmailEvent);
-    editor.insertBefore(block, input);
-  }
-
-  function addLabel(block, addEmailEvent) {
-    var label = document.createElement('span');
-    label.innerHTML = addEmailEvent.email;
-    label.className = 'emails-input__block-email';
-    block.appendChild(label);
-  }
-
-  function addRemoveButton(block, editor, addEmailEvent) {
-    var button = document.createElement('span');
-    button.innerHTML = remove;
-    button.className = 'emails-input__block-remove';
-    button.addEventListener('click', addEmailEvent.undo);
-
-    addEmailEvent.onRemoveEmail = function () {
-      return editor.removeChild(block);
-    };
-
-    block.appendChild(button);
   }
 
   function addInput(editor, logic) {
@@ -938,11 +911,52 @@
         input.value.split(',').forEach(addEmail);
       }, 0);
     });
-    logic.onAddEmail = addBlock.bind(null, {
-      editor: editor,
-      input: input
-    });
     editor.appendChild(input);
+    return input;
+  }
+
+  var remove = '<svg viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.8L7.2 0L4 3.2L0.8 0L0 0.8L3.2 4L0 7.2L0.8 8L4 4.8L7.2 8L8 7.2L4.8 4L8 0.8Z" fill="#050038"/></svg>';
+
+  function addBlock(_ref, addEmailEvent) {
+    var editor = _ref.editor,
+        input = _ref.input,
+        logic = _ref.logic;
+    var block = document.createElement('span');
+    block.className = 'emails-input__block';
+
+    if (!addEmailEvent.isValid) {
+      block.className = block.className + ' emails-input__block--invalid';
+    }
+
+    addLabel(block, addEmailEvent);
+    addRemoveButton(block, logic, addEmailEvent);
+    editor.insertBefore(block, input);
+    logic.register({
+      onRemoveEmail: function onRemoveEmail(id) {
+        if (id === addEmailEvent.id) {
+          editor.removeChild(block);
+        }
+      }
+    });
+  }
+
+  function addLabel(block, _ref2) {
+    var email = _ref2.email;
+    var label = document.createElement('span');
+    label.innerHTML = email;
+    label.className = 'emails-input__block-email';
+    block.appendChild(label);
+  }
+
+  function addRemoveButton(block, logic, _ref3) {
+    var id = _ref3.id;
+    var button = document.createElement('span');
+    button.innerHTML = remove;
+    button.className = 'emails-input__block-remove';
+    button.addEventListener('click', function () {
+      return logic.removeEmail(id);
+    });
+    block.appendChild(button);
   }
 
   function addContent(node, logic, options) {
@@ -968,7 +982,16 @@
     var editor = document.createElement('div');
     editor.className = 'emails-input__editor';
     content.appendChild(editor);
-    addInput(editor, logic);
+    var input = addInput(editor, logic);
+    logic.register({
+      onAddEmail: function onAddEmail(addEmailEvent) {
+        addBlock({
+          editor: editor,
+          input: input,
+          logic: logic
+        }, addEmailEvent);
+      }
+    });
   }
 
   function addFooter(node, logic) {

@@ -1,4 +1,5 @@
 import addInput from './add-input.js'
+import addBlock from './add-block.js'
 
 function addContent (node, logic, options) {
   const content = document.createElement('div')
@@ -29,7 +30,13 @@ function addEditor (content, logic) {
 
   content.appendChild(editor)
 
-  addInput(editor, logic)
+  const input = addInput(editor, logic)
+
+  logic.register({
+    onAddEmail (addEmailEvent) {
+      addBlock({ editor, input, logic }, addEmailEvent)
+    }
+  })
 }
 
 export default addContent

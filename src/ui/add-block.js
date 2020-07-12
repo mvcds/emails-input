@@ -1,6 +1,6 @@
 import remove from '../icons/icon-remove.svg'
 
-function addBlock ({ editor, input }, addEmailEvent) {
+function addBlock ({ editor, input, logic }, addEmailEvent) {
   const block = document.createElement('span')
 
   block.className = 'emails-input__block'
@@ -10,28 +10,34 @@ function addBlock ({ editor, input }, addEmailEvent) {
   }
 
   addLabel(block, addEmailEvent)
-  addRemoveButton(block, editor, addEmailEvent)
+  addRemoveButton(block, logic, addEmailEvent)
 
   editor.insertBefore(block, input)
+
+  logic.register({
+    onRemoveEmail (id) {
+      if (id === addEmailEvent.id) {
+        editor.removeChild(block)
+      }
+    }
+  })
 }
 
-function addLabel (block, addEmailEvent) {
+function addLabel (block, { email }) {
   const label = document.createElement('span')
-  label.innerHTML = addEmailEvent.email
+  label.innerHTML = email
   label.className = 'emails-input__block-email'
 
   block.appendChild(label)
 }
 
-function addRemoveButton (block, editor, addEmailEvent) {
+function addRemoveButton (block, logic, { id }) {
   const button = document.createElement('span')
 
   button.innerHTML = remove
   button.className = 'emails-input__block-remove'
 
-  button.addEventListener('click', addEmailEvent.undo)
-
-  addEmailEvent.onRemoveEmail = () => editor.removeChild(block)
+  button.addEventListener('click', () => logic.removeEmail(id))
 
   block.appendChild(button)
 }

@@ -1,7 +1,8 @@
 import email from 'random-email'
 
 function Logic () {
-  //  necessary because text can be repeated
+  const observers = []
+  //  an id necessary because text can be repeated
   let id = 0
   const logic = {
     addEmail (raw) {
@@ -14,16 +15,20 @@ function Logic () {
       const addEmailEvent = {
         email,
         id: id++,
-        isValid: isEmailValid(email),
-        undo () {
-          logic.emails = logic.emails.filter(email => email.id !== addEmailEvent.id)
-          addEmailEvent.onRemoveEmail && addEmailEvent.onRemoveEmail()
-        }
+        isValid: isEmailValid(email)
       }
 
       logic.emails.push(addEmailEvent)
+      observers.forEach(({ onAddEmail }) => {
+        onAddEmail && onAddEmail(addEmailEvent)
+      })
+    },
+    removeEmail (id) {
+      logic.emails = logic.emails.filter(email => email.id !== id)
 
-      logic.onAddEmail && logic.onAddEmail(addEmailEvent)
+      observers.forEach(({ onRemoveEmail }) => {
+        onRemoveEmail && onRemoveEmail(id)
+      })
     },
     getEmailsCount () {
       const validEmails = logic.emails
@@ -41,11 +46,14 @@ function Logic () {
       logic.addEmail(raw)
     },
     setEmails (emails = []) {
-      logic.emails.forEach(({ undo }) => undo())
+      logic.emails.forEach(({ id }) => logic.removeEmail(id))
       emails.forEach(logic.addEmail)
     },
     getEmails () {
       return logic.emails.map(({ email }) => email)
+    },
+    register (callbacks) {
+      observers.push(callbacks)
     },
     emails: []
   }
