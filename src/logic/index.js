@@ -39,13 +39,13 @@ function Logic () {
       alert(validEmails.length)
     },
     addRandomEmail () {
-      const raw = createRandomEmail()
+      const email = createRandomEmail()
 
-      if (!isEmailValid(raw)) {
+      if (!isEmailValid(email)) {
         return logic.addRandomEmail()
       }
 
-      logic.addEmail(raw)
+      logic.addEmail(email)
     },
     setEmails (list = []) {
       emails.forEach(({ id }) => logic.removeEmail(id))
