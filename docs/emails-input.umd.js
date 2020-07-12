@@ -818,17 +818,14 @@
           id: id++,
           isValid: isEmailValid(email),
           undo: function undo() {
-            logic.removeEmail(addEmailEvent.id);
+            logic.emails = logic.emails.filter(function (email) {
+              return email.id !== addEmailEvent.id;
+            });
             addEmailEvent.onRemoveEmail && addEmailEvent.onRemoveEmail();
           }
         };
         logic.emails.push(addEmailEvent);
         logic.onAddEmail && logic.onAddEmail(addEmailEvent);
-      },
-      removeEmail: function removeEmail(id) {
-        logic.emails = logic.emails.filter(function (x) {
-          return x.id !== id;
-        });
       },
       getEmailsCount: function getEmailsCount() {
         var validEmails = logic.emails.filter(function (_ref) {

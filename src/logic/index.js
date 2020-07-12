@@ -16,7 +16,7 @@ function Logic () {
         id: id++,
         isValid: isEmailValid(email),
         undo () {
-          logic.removeEmail(addEmailEvent.id)
+          logic.emails = logic.emails.filter(email => email.id !== addEmailEvent.id)
           addEmailEvent.onRemoveEmail && addEmailEvent.onRemoveEmail()
         }
       }
@@ -24,9 +24,6 @@ function Logic () {
       logic.emails.push(addEmailEvent)
 
       logic.onAddEmail && logic.onAddEmail(addEmailEvent)
-    },
-    removeEmail (id) {
-      logic.emails = logic.emails.filter(x => x.id !== id)
     },
     getEmailsCount () {
       const validEmails = logic.emails
