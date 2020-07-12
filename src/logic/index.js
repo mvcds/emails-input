@@ -1,4 +1,4 @@
-import email from 'random-email'
+import createRandomEmail from 'random-email'
 
 function Logic () {
   const observers = []
@@ -37,7 +37,7 @@ function Logic () {
       alert(validEmails.length)
     },
     addRandomEmail () {
-      const raw = email()
+      const raw = createRandomEmail()
 
       if (!isEmailValid(raw)) {
         return logic.addRandomEmail()
