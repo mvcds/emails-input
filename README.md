@@ -18,7 +18,7 @@ You need a few ingredients to use this lib
   var emailsInput = EmailsInput(targetNode);
 ```
 
-`EmailsInput` is a function that takes as first argument a node where a `EmailEditor` will be rendered, the second and optional argument is an object containing some members which change how the instance behaves/looks.
+`EmailsInput` is a function that takes as first argument a node where an `EmailEditor` will be rendered, the second and optional argument is an object containing some members which change how the instance behaves/looks.
 
 For a complete example, check the HTML file under the `docs` folder, as that file serves the same content available at the [example page](https://mvcds.github.io/emails-input/). You can also copy or reference the files from `docs` to use in your own projects.
 
