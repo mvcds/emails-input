@@ -1,7 +1,7 @@
 import createRandomEmail from 'random-email'
 
 function Logic () {
-  const observers = []
+  let observers = []
   let emails = []
   //  UX was weird when I tried to forbid repeated emails
   //  so an ID was necessary due to time constraints =D
@@ -54,8 +54,12 @@ function Logic () {
     getEmails () {
       return emails.map(({ email }) => email)
     },
-    register (callbacks) {
-      observers.push(callbacks)
+    register (callback) {
+      observers.push(callback)
+
+      return () => {
+        observers = observers.filter(observer => observer !== callback)
+      }
     }
   }
 

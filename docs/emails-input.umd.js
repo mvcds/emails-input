@@ -844,13 +844,13 @@
         alert(validEmails.length);
       },
       addRandomEmail: function addRandomEmail() {
-        var raw = randomEmail();
+        var email = randomEmail();
 
-        if (!isEmailValid(raw)) {
+        if (!isEmailValid(email)) {
           return logic.addRandomEmail();
         }
 
-        logic.addEmail(raw);
+        logic.addEmail(email);
       },
       setEmails: function setEmails() {
         var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -866,8 +866,13 @@
           return email;
         });
       },
-      register: function register(callbacks) {
-        observers.push(callbacks);
+      register: function register(callback) {
+        observers.push(callback);
+        return function () {
+          observers = observers.filter(function (observer) {
+            return observer !== callback;
+          });
+        };
       }
     };
     return logic;
@@ -932,10 +937,11 @@
     addLabel(block, addEmailEvent);
     addRemoveButton(block, logic, addEmailEvent);
     editor.insertBefore(block, input);
-    logic.register({
+    var unregister = logic.register({
       onRemoveEmail: function onRemoveEmail(id) {
         if (id === addEmailEvent.id) {
           editor.removeChild(block);
+          unregister();
         }
       }
     });

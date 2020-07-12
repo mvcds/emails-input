@@ -14,10 +14,11 @@ function addBlock ({ editor, input, logic }, addEmailEvent) {
 
   editor.insertBefore(block, input)
 
-  logic.register({
+  const unregister = logic.register({
     onRemoveEmail (id) {
       if (id === addEmailEvent.id) {
         editor.removeChild(block)
+        unregister()
       }
     }
   })
