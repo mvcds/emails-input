@@ -115,9 +115,9 @@
       });
 
     EmailsInput(document.querySelector('#custom'), {
-      createTitleNodes: () => [
-        document.createTextNode("I am customized")
-      ],
+      createTitleNodes: function customTitle() {
+        return [document.createTextNode("I am customized")]
+      },
       classes: 'my-custom-input'
     })
 
