@@ -803,7 +803,9 @@
   };
 
   function Logic() {
-    var observers = []; //  an id necessary because text can be repeated
+    var observers = [];
+    var emails = []; //  UX was weird when I tried to forbid repeated emails
+    //  so an ID was necessary due to time constraints =D
 
     var id = 0;
     var logic = {
@@ -819,14 +821,14 @@
           id: id++,
           isValid: isEmailValid(email)
         };
-        logic.emails.push(addEmailEvent);
+        emails.push(addEmailEvent);
         observers.forEach(function (_ref) {
           var onAddEmail = _ref.onAddEmail;
           onAddEmail && onAddEmail(addEmailEvent);
         });
       },
       removeEmail: function removeEmail(id) {
-        logic.emails = logic.emails.filter(function (email) {
+        emails = emails.filter(function (email) {
           return email.id !== id;
         });
         observers.forEach(function (_ref2) {
@@ -835,7 +837,7 @@
         });
       },
       getEmailsCount: function getEmailsCount() {
-        var validEmails = logic.emails.filter(function (_ref3) {
+        var validEmails = emails.filter(function (_ref3) {
           var isValid = _ref3.isValid;
           return isValid;
         });
@@ -851,23 +853,22 @@
         logic.addEmail(raw);
       },
       setEmails: function setEmails() {
-        var emails = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-        logic.emails.forEach(function (_ref4) {
+        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        emails.forEach(function (_ref4) {
           var id = _ref4.id;
           return logic.removeEmail(id);
         });
-        emails.forEach(logic.addEmail);
+        list.forEach(logic.addEmail);
       },
       getEmails: function getEmails() {
-        return logic.emails.map(function (_ref5) {
+        return emails.map(function (_ref5) {
           var email = _ref5.email;
           return email;
         });
       },
       register: function register(callbacks) {
         observers.push(callbacks);
-      },
-      emails: []
+      }
     };
     return logic;
   } // https://stackoverflow.com/a/46181/3178998

@@ -2,7 +2,9 @@ import createRandomEmail from 'random-email'
 
 function Logic () {
   const observers = []
-  //  an id necessary because text can be repeated
+  let emails = []
+  //  UX was weird when I tried to forbid repeated emails
+  //  so an ID was necessary due to time constraints =D
   let id = 0
   const logic = {
     addEmail (raw) {
@@ -18,20 +20,20 @@ function Logic () {
         isValid: isEmailValid(email)
       }
 
-      logic.emails.push(addEmailEvent)
+      emails.push(addEmailEvent)
       observers.forEach(({ onAddEmail }) => {
         onAddEmail && onAddEmail(addEmailEvent)
       })
     },
     removeEmail (id) {
-      logic.emails = logic.emails.filter(email => email.id !== id)
+      emails = emails.filter(email => email.id !== id)
 
       observers.forEach(({ onRemoveEmail }) => {
         onRemoveEmail && onRemoveEmail(id)
       })
     },
     getEmailsCount () {
-      const validEmails = logic.emails
+      const validEmails = emails
         .filter(({ isValid }) => isValid)
 
       alert(validEmails.length)
@@ -45,17 +47,16 @@ function Logic () {
 
       logic.addEmail(raw)
     },
-    setEmails (emails = []) {
-      logic.emails.forEach(({ id }) => logic.removeEmail(id))
-      emails.forEach(logic.addEmail)
+    setEmails (list = []) {
+      emails.forEach(({ id }) => logic.removeEmail(id))
+      list.forEach(logic.addEmail)
     },
     getEmails () {
-      return logic.emails.map(({ email }) => email)
+      return emails.map(({ email }) => email)
     },
     register (callbacks) {
       observers.push(callbacks)
-    },
-    emails: []
+    }
   }
 
   return logic
