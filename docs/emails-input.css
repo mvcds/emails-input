@@ -49,7 +49,7 @@
   background: rgba(102, 153, 255, 0.2);
   border-radius: 100px;
   margin: 0 8px 4px 0;
-  padding: 0 8px 0 10px;
+  padding: 0 0 0 10px;
   display: inline-flex;
   cursor: pointer;
   max-width: calc(100% - 8px);
@@ -67,7 +67,6 @@
 }
 
 .emails-input__block-email {
-  margin-right: 8px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,19 +74,22 @@
 
 .emails-input__block-remove {
   cursor: pointer;
-  height: 8px;
-  width: 8px;
+  height: 24px;
+  width: 24px;
   display: flex;
   transition: transform 0.5s;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
 }
 
 .emails-input__block-remove:hover {
-  transform: rotate(90deg);
+  background-color: rgb(255, 0, 0, 0.2);
 }
 
-.emails-input__block-remove svg {
-  height: 100%;
-  width: 100%;
+.emails-input__block-remove > svg {
+  height: 8px;
+  width: 8px;
 }
 
 .emails-input__email {
